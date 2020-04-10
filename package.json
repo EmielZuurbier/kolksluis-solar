@@ -13,7 +13,6 @@
     "lib": "lib"
   },
   "scripts": {
-    "dev": "webpack --watch --mode development && gulp",
     "script": "parcel ./src/js/script.js",
     "style": "parcel ./src/css/style.css",
     "watch": "parcel watch ./src/js/script.js ./src/css/style.css",
@@ -21,13 +20,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/controldigital/wp-theme-template.git"
+    "url": "git+https://https://github.com/EmielZuurbier/kolksluis-solar.git"
   },
   "keywords": [],
   "author": "Emiel Zuurbier",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/controldigital/wp-theme-template/issues"
+    "url": "https://https://github.com/EmielZuurbier/kolksluis-solar/issues"
   },
   "homepage": "https://kolksluis.solar/",
   "devDependencies": {
