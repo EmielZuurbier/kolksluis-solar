@@ -1,0 +1,16 @@
+.nav {
+	--nav-padding: 1em;
+	padding: var(--nav-padding);
+}
+
+.nav.nav--front-page {
+	height: 100%;
+}
+
+@media all and (min-width: 48em) {
+
+	.nav {
+		--nav-padding: 1.5em;
+	}
+
+}

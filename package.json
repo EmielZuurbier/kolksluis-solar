@@ -1,0 +1,72 @@
+{
+  "name": "kolksluis-solar",
+  "version": "0.1.0",
+  "description": "Kolksluis Solar Website Project",
+  "main": "./src/js/script.js",
+  "source": true,
+  "alias": {
+    "Classes": "./src/js/classes",
+    "Components": "./src/js/components",
+    "Utilities": "./src/js/utilities"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "webpack --watch --mode development && gulp",
+    "script": "parcel ./src/js/script.js",
+    "style": "parcel ./src/css/style.css",
+    "watch": "parcel watch ./src/js/script.js ./src/css/style.css",
+    "build": "parcel build ./src/js/script.js ./src/css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/controldigital/wp-theme-template.git"
+  },
+  "keywords": [],
+  "author": "Emiel Zuurbier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/controldigital/wp-theme-template/issues"
+  },
+  "homepage": "https://kolksluis.solar/",
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-private-methods": "^7.8.3",
+    "@babel/preset-env": "^7.8.7",
+    "cssnano": "^4.1.10"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ],
+      [
+        "@babel/plugin-proposal-private-methods",
+        {
+          "loose": true
+        }
+      ]
+    ]
+  },
+  "browserslist": [
+    "last 1 Chrome versions"
+  ],
+  "dependencies": {
+    "classes": "^0.3.0"
+  }
+}

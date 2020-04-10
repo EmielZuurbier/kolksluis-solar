@@ -1,0 +1,7 @@
+@font-face {
+	font-family: 'Ailerons';
+	font-weight: 400;
+	src: url('../../../assets/media/fonts/ailerons-typeface-webfont.woff2') format('woff2'),
+		url('../../../assets/media/fonts/ailerons-typeface-webfont.woff') format('woff'),
+		url('../../../assets/media/fonts/ailerons-typeface-webfont.ttf') format('ttf');
+}

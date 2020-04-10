@@ -1,0 +1,319 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Kolksluis Solar\n"
+"POT-Creation-Date: 2018-11-25 15:26+0100\n"
+"PO-Revision-Date: 2018-11-25 15:45+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;_x;_n\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+
+#: inc/cookies/cookies-notice.php:64
+msgid "Accept"
+msgstr "Accepteren"
+
+#: inc/cookies/cookies-notice.php:67 lib/core/cookie.php:202
+msgid "Refuse"
+msgstr "Wijgeren"
+
+#: inc/cookies/cookies-notice.php:71
+msgid "Cookie policy"
+msgstr "Cookie beleid"
+
+#: inc/cookies/cookies-notice.php:93
+msgid "Revoke cookie"
+msgstr "Cookie intrekken"
+
+#: lib/core/cookie.php:183
+msgid "Cookies"
+msgstr "Cookies"
+
+#: lib/core/cookie.php:184
+msgid "Cookie Settings"
+msgstr "Cookie instellingen"
+
+#: lib/core/cookie.php:192
+msgid "General"
+msgstr "Algemeen"
+
+#: lib/core/cookie.php:212
+msgid "Privacy policy"
+msgstr "Privacy beleid"
+
+#: lib/core/cookie.php:222
+msgid "Revoke"
+msgstr "Intrekken"
+
+#: lib/core/cookie.php:232
+msgid "Scripts"
+msgstr "Scripts"
+
+#: lib/core/cookie.php:243
+msgid "Cookie active?"
+msgstr "Cookie actief?"
+
+#: lib/core/cookie.php:244
+msgid "Set the state of the cookie."
+msgstr "Stel de staat van de cookies in."
+
+#: lib/core/cookie.php:257
+msgid "Name"
+msgstr "Naam"
+
+#: lib/core/cookie.php:258
+msgid ""
+"The name of the cookie that will be stored in the browser. Only needs to be "
+"changed in case of a conflicting cookie name."
+msgstr ""
+"De naam van de cookie dat opgeslagen wordt in de browser. Hoeft alleen "
+"gewijzigd te worden wanneer er een conflicterende cookie naam is."
+
+#: lib/core/cookie.php:271
+msgid "Title"
+msgstr "Titel"
+
+#: lib/core/cookie.php:272
+msgid "The title of the cookie message."
+msgstr "De titel van het cookie bericht."
+
+#: lib/core/cookie.php:285
+msgid "Body"
+msgstr "Inhoud"
+
+#: lib/core/cookie.php:286
+msgid "The main content of the cookie message."
+msgstr "De hoofd inhoud van het cookie bericht."
+
+#: lib/core/cookie.php:299
+msgid "Expiration period"
+msgstr "Periode van houdbaarheid"
+
+#: lib/core/cookie.php:300
+msgid "The amount of time that the cookie will be stored"
+msgstr "De hoeveelheid tijd dat de cookie opgeslagen zal blijven"
+
+#: lib/core/cookie.php:305
+msgid "1 day"
+msgstr "1 dag"
+
+#: lib/core/cookie.php:306
+msgid "1 week"
+msgstr "1 week"
+
+#: lib/core/cookie.php:307
+msgid "1 month"
+msgstr "1 maand"
+
+#: lib/core/cookie.php:308
+msgid "3 months"
+msgstr "3 maanden"
+
+#: lib/core/cookie.php:309
+msgid "6 months"
+msgstr "6 maanden"
+
+#: lib/core/cookie.php:310
+msgid "1 year"
+msgstr "1 jaar"
+
+#: lib/core/cookie.php:322
+msgid "Accept button"
+msgstr "Accepteer knop"
+
+#: lib/core/cookie.php:323
+msgid "Label of the accept button."
+msgstr "Label van de accepteer knop."
+
+#: lib/core/cookie.php:336
+msgid "Refuse active?"
+msgstr "Weigeren actief?"
+
+#: lib/core/cookie.php:337
+msgid "Set the state of the refuse button."
+msgstr "Stel de status van de weiger knop in."
+
+#: lib/core/cookie.php:350
+msgid "Refuse button"
+msgstr "Weiger knop"
+
+#: lib/core/cookie.php:351
+msgid "Label of the refuse button."
+msgstr "Label van de weiger knop"
+
+#: lib/core/cookie.php:363
+msgid "Privacy policy active?"
+msgstr "Privacy beleid knop actief?"
+
+#: lib/core/cookie.php:364
+msgid "Set the state of the privacy policy button."
+msgstr "Stel de status van de privacy beleid knop in."
+
+#: lib/core/cookie.php:377
+msgid "Privacy policy button"
+msgstr "Privacy beleid knop"
+
+#: lib/core/cookie.php:378
+msgid "Label of the privacy policy button."
+msgstr "Label van de privacy beleid knop."
+
+#: lib/core/cookie.php:390
+msgid "-Select-"
+msgstr "-Selecteer-"
+
+#: lib/core/cookie.php:403
+msgid "Privacy policy page"
+msgstr "Privacy beleid pagina"
+
+#: lib/core/cookie.php:404
+msgid "Selecteer the page of the privacy policy."
+msgstr "Selecteer de pagina van het privacy beleid."
+
+#: lib/core/cookie.php:418
+msgid "Revoke active?"
+msgstr "Intrekken actief?"
+
+#: lib/core/cookie.php:419
+msgid ""
+"Set the state of the ability to change the cookie settings after accepting "
+"or refusing the cookies."
+msgstr ""
+"Stel de status in voor de mogelijkheid om de cookie intrekbaar te maken "
+"nadat deze geaccepteerd of geweigerd is."
+
+#: lib/core/cookie.php:432
+msgid "Revoke button"
+msgstr "Intrekken knop"
+
+#: lib/core/cookie.php:433
+msgid "Label of the revoke button."
+msgstr "Label van de intrekken knop"
+
+#: lib/core/cookie.php:446
+msgid "Head scripts"
+msgstr "Head scripts"
+
+#: lib/core/cookie.php:447
+msgid ""
+"Place scripts that have to be appended to the head when the cookie is "
+"accepted"
+msgstr ""
+"Plaats hier scripts die aan het einde van de head toegevoegd moeten worden "
+"nadat de cookie is geaccepteerd"
+
+#: lib/core/cookie.php:460
+msgid "Body scripts"
+msgstr "Body scripts"
+
+#: lib/core/cookie.php:461
+msgid ""
+"Place scripts that have to be appended to the start of the body when the "
+"cookie is accepted"
+msgstr ""
+"Plaats hier scripts die aan het begin van de body toegevoegd moeten worden "
+"nadat de cookie is geaccepteerd"
+
+#: lib/core/filters.php:75
+msgid ""
+"De inhoud is beveiligd met een wachtwoord. Vul het wachtwoord hieronder in "
+"om hem te kunnen bekijken:"
+msgstr ""
+
+#: lib/core/filters.php:76
+msgid "Wachtwoord:"
+msgstr ""
+
+#: lib/core/helpers.php:368
+msgid "Page"
+msgstr ""
+
+#: lib/theme/admin.php:64
+msgid "404 pagina bewerken"
+msgstr ""
+
+#: lib/theme/admin.php:65
+msgid "404"
+msgstr ""
+
+#: lib/theme/admin.php:98
+msgid "Pagina is met succes opgeslagen"
+msgstr ""
+
+#: lib/theme/admin.php:104
+msgid "Er is iets misgegaan"
+msgstr ""
+
+#: lib/theme/admin.php:149
+msgid "Vul hier de titel in"
+msgstr ""
+
+#: lib/theme/admin.php:156
+msgid "Opslaan"
+msgstr ""
+
+#: lib/theme/gutenberg.php:28
+msgid "control blue"
+msgstr "control blauw"
+
+#: lib/theme/gutenberg.php:37
+msgid "small"
+msgstr "klein"
+
+#: lib/theme/gutenberg.php:38
+msgid "S"
+msgstr "S"
+
+#: lib/theme/navigation.php:21
+msgid "Main Menu"
+msgstr "Hoofdmenu"
+
+#: lib/theme/navigation.php:22
+msgid "Front Page"
+msgstr "Voorpagina"
+
+#: lib/theme/navigation.php:302
+msgid "Read more"
+msgstr "Lees meer"
+
+#: lib/theme/navigation.php:312
+msgid "Toggle menu open or close"
+msgstr "Open of sluit menu"
+
+#: lib/theme/sidebars.php:24
+msgid "Menu Sidebar"
+msgstr "Menu Sidebar"
+
+#: lib/theme/sidebars.php:25
+msgid "Sidebar"
+msgstr "Sidebar"
+
+#: lib/theme/widgets.php:74
+msgid "Button with customizable title and type"
+msgstr "Knop met aanpasbare titel en type"
+
+#: lib/theme/widgets.php:77
+msgid "Button"
+msgstr "Knop"
+
+#: lib/theme/widgets.php:167
+msgid "Social media buttons widget"
+msgstr "Sociale media knoppen widget"
+
+#: lib/theme/widgets.php:170
+msgid "Social"
+msgstr "Sociaal"
+
+#: lib/theme/widgets.php:315
+msgid "Pick a highlighted post"
+msgstr "Kies een uitgelicht bericht"
+
+#: lib/theme/widgets.php:318
+msgid "Highlight Post"
+msgstr "Uitgelicht bericht"

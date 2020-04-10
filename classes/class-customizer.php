@@ -1,0 +1,4 @@
+<?php
+/**
+ * class-customizer.php
+ */

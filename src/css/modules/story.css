@@ -1,0 +1,4 @@
+.story {
+	grid-area: main;
+	z-index: 1;
+}

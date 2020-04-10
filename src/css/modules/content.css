@@ -1,0 +1,23 @@
+.content {
+	font-size: 1.25em;
+	font-weight: 300;
+	line-height: 1.6;
+}
+
+.content h2 {
+	margin: 5rem 0 3.5rem;
+}
+
+.content h2:first-child {
+	margin-top: 0;
+}
+
+.content h2:last-child {
+	margin-bottom: 0;
+}
+
+.content em {
+	font-size: 1.5em;
+	font-style: normal;
+	font-weight: 400;
+}

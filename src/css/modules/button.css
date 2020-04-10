@@ -1,0 +1,45 @@
+.button {
+	display: inline-grid;
+	grid-template-rows: var(--button-layout);
+	grid-template-columns: var(--button-layout);
+	grid-template-areas:
+		".   .   ."
+		". label ."
+		".   .   .";
+	box-shadow: var(--panel-shadow);
+	transition: transform var(--duration-instant) ease-in-out, box-shadow var(--duration-instant) ease-in-out;
+}
+
+.button__label {
+	grid-area: label;
+	display: inline-flex;
+	font-size: 1em;
+	font-weight: 400;
+	padding: 1.25em 2em;
+	background: var(--color-light);
+	color: var(--color-gray);
+	z-index: 1;
+}
+
+.button::before {
+	content: '';
+    grid-area: 1 / 1 / 4 / 4;
+    background: var(--gradient-accent-angle);
+}
+
+.button--light {
+	background: var(--color-light);
+	color: var(--color-gray);
+}
+
+.button:focus {
+	box-shadow: var(--focussed-shadow);
+}
+
+.button:hover {
+	box-shadow: var(--lifted-shadow);
+}
+
+.button:active {
+	box-shadow: var(--pressed-shadow);
+}
