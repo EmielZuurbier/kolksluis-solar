@@ -18,7 +18,7 @@ export const isWebAudioAPISupported = () => hasFeatures('Web Audio API');
 export const fetchAudioFiles = (audioContext, ...urls) => Promise.all(urls.map(async (url) => {
 	const response = await fetch(url);
 	const buffer = await response.arrayBuffer();
-	const decodedData = await audioContext.decodedData(buffer);
+	const decodedData = await audioContext.decodeAudioData(buffer);
 	return decodedData;
 }));
 
