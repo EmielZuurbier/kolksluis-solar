@@ -8,7 +8,10 @@
 	<header class="banner__container">
 		<div class="banner__brand">
 			<a href="<?php echo home_url( '/' ); ?>" title="Home" rel="home">
-				<h1 class="banner__title"><?php bloginfo( 'name' ); ?></h1>
+				<!-- <h1 class="banner__title"><?php bloginfo( 'name' ); ?></h1> -->
+				<div class="banner__logo">
+					<?php get_template_part( './template-parts/logo/logo' ); ?>
+				</div>
 			</a>
 		</div>
 		<kss-menu class="banner__menu js-menu" id="menu">

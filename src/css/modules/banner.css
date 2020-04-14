@@ -53,6 +53,11 @@
 	color: var(--color-dark);
 }
 
+.banner__logo {
+	display: block;
+	width: 3.5em;
+}
+
 .banner__menu {
 	position: absolute;
 	display: flex;

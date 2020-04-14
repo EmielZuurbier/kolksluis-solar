@@ -1,0 +1,29 @@
+.logo {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.logo rect,
+.logo polyline {
+	transition: var(--duration-average) var(--easing);
+	transition-property: fill, stroke;
+}
+
+.logo rect {
+	fill: var(--color-light);
+	stroke: var(--color-light);
+}
+
+.logo polyline {
+	stroke: var(--color-light);
+}
+
+.banner[scrolled] .logo rect {
+	fill: var(--color-dark-alt);
+	stroke: var(--color-dark-alt);
+}
+
+.banner[scrolled] .logo polyline {
+	stroke: var(--color-dark-alt);
+}
