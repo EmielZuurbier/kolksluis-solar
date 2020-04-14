@@ -46,10 +46,10 @@
 	--container-width: 40rem;
 
 	--duration-instant: 75ms;
-	--duration-fast: 125ms;
-	--duration-average: 250ms;
-	--duration-slow: 500ms;
-	--duration-long: 1s;
+	--duration-fast: 150ms;
+	--duration-average: 350ms;
+	--duration-slow: 600ms;
+	--duration-long: 1.25s;
 
 	--easing: cubic-bezier(0.42, 0, 0.12, 0.97);
 
