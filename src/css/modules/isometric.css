@@ -1,0 +1,14 @@
+.isometric {
+	grid-area: center;
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-areas: 1fr;
+}
+
+.isometric::before {
+	grid-area: 1 / 1 / 2 / 2;
+	content: "";
+	display: block;
+	background-color: var(--color-dark-alt);
+	box-shadow: var(--panel-shadow);
+}

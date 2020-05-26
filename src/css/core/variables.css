@@ -41,6 +41,8 @@
 		linear-gradient(125deg, #b04a51, #764153, #47333c), 
 		linear-gradient(-45deg, #b04a51, #764153, #47333c);
 
+	--font-ailerons: 'Ailerons', sans-serif;
+
 	--grid-container-rows: 3.5em 1fr 3.5em;
 	--grid-container-columns: auto 1fr auto;
 	--container-width: 40rem;
@@ -70,7 +72,7 @@
 @media all and (min-width: 48em) {
 	
 	:root {
-		--container-width: 42rem;
+		--container-width: 52rem;
 	}
 
 }

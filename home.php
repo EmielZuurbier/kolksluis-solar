@@ -8,16 +8,28 @@
 get_header();
 ?>
 
-<main role="main">
+<main id="main" role="main">
+	<article class="js-ajax-container">
+		<div class="js-ajax-content">
 
-	<article class="layout js-ajax-container" role="article">
-		<div class="layout-container js-ajax-content">
+			<?php kss_get_hero( 'home' ); ?>
 
-			<?php get_template_part( './inc/content/content', 'home' ); ?>
+			<div class="layout layout--page">
+				<div class="layout__container">
+
+					<div class="layout__grid">
+					<?php if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>
+
+						<?php kss_get_news( 'item-small' ); ?>
+
+					<?php } } ?>
+					</div>
+
+				</div>
+			</div>
 
 		</div>
 	</article>
-
 </main>
 
 <?php

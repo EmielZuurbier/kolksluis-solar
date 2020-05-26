@@ -1,6 +1,6 @@
 <?php
 /**
- * hero-single.php
+ * hero.php
  */
 ?>
 

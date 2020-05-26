@@ -4,11 +4,13 @@ import CustomElementsDefiner from 'Classes/custom-elements/definer.js';
 import BannerElement from 'Components/banner/index.js';
 import MenuElement from 'Components/menu/index.js';
 import FlyOutElement from 'Components/flyout/index.js';
+import MapElement from 'Components/map/index.js';
 
 const definer = new CustomElementsDefiner('kss')
 	.add('banner', BannerElement)
 	.add('menu', MenuElement)
 	.add('flyout', FlyOutElement)
+	.add('map', MapElement)
 	.defineAll();
 
 const menu = document.querySelector('.js-menu');

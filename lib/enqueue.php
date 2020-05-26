@@ -13,6 +13,11 @@ add_action( 'wp_enqueue_scripts', 'enqueue_theme_styles' );
 function enqueue_theme_styles() {
 
 	/**
+	 * Relative URL to current template directory.
+	 */
+	$template_dir = get_template_directory_uri();
+
+	/**
 	 * Unregister gutenberg blocks
 	 */
 	wp_deregister_style( 'wp-block-library' );
@@ -23,7 +28,16 @@ function enqueue_theme_styles() {
 	 * 
 	 * Main stylesheet of this theme
 	 */
-	wp_register_style( 'style', get_template_directory_uri() . '/dist/css/style.css', false, false, 'all' );
+	wp_register_style( 'style', $template_dir . '/dist/css/style.css', false, false, 'all' );
+	wp_add_inline_style( 'style', "
+		@font-face {
+			font-family: 'Ailerons';
+			font-weight: 400;
+			src: url('{$template_dir}/assets/media/fonts/ailerons-typeface-webfont.woff2') format('woff2'),
+				url('{$template_dir}/assets/media/fonts/ailerons-typeface-webfont.woff') format('woff'),
+				url('{$template_dir}/assets/media/fonts/ailerons-typeface-webfont.ttf') format('ttf');
+		}
+	" );
 	wp_enqueue_style( 'style' );
 
 }
@@ -37,6 +51,14 @@ function enqueue_theme_styles() {
 add_action( 'wp_enqueue_scripts', 'enqueue_theme_scripts' );
 function enqueue_theme_scripts() {
 
+	/**
+	 * Relative URL to current template directory.
+	 */
+	$template_dir = get_template_directory_uri();
+
+	/**
+	 * Disable WP Embed and jQuery by default.
+	 */
 	wp_deregister_script( 'wp-embed' );
 	wp_deregister_script( 'jquery' );
 
@@ -74,10 +96,10 @@ function enqueue_theme_scripts() {
 	 * This file includes the general script of handling
 	 * interactions and DOM modifications.
 	 */
-	wp_register_script( 'script', get_template_directory_uri() . '/dist/js/script.js', false, false, true );
+	wp_register_script( 'script', $template_dir . '/dist/js/script.js', false, false, true );
 	wp_localize_script( 'script', 'wp', array(
 		'ajax' 			=> admin_url( 'admin-ajax.php' ),
-		'theme' 		=> get_template_directory_uri(),
+		'theme' 		=> $template_dir,
 		'rest'			=> esc_url( get_rest_url() ),
 	) );
 	wp_enqueue_script( 'script' );

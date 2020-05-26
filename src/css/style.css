@@ -5,7 +5,6 @@
 
 @import "./core/variables.css";			/* CSS Variables */
 @import "./core/reset.css";				/* CSS Reset */
-@import "./core/fonts.css";				/* Fonts */
 @import "./core/general.css";			/* General */
 @import "./core/wordpress.css";			/* Wordpress */
 @import "./core/text.css";				/* Text */
@@ -18,16 +17,21 @@
 @import "./modules/button.css";			/* Button */
 @import "./modules/toggle.css";			/* Toggle */
 @import "./modules/banner.css";			/* Banner */
+@import "./modules/footer.css";			/* Footer */
 @import "./modules/logo.css";			/* Logo */
 @import "./modules/navigation.css";		/* Navigation */
 @import "./modules/menu.css";			/* Menu */
 @import "./modules/hero.css";			/* Hero */
+@import "./modules/panel.css";			/* Panel */
 @import "./modules/news.css";			/* News */
 @import "./modules/member.css";			/* Members */
+@import "./modules/map.css";			/* Map */
 @import "./modules/frame.css";			/* Frame */
 @import "./modules/content.css";		/* Content */
 @import "./modules/tooltip.css";		/* Tooltip */
 @import "./modules/backdrop.css";		/* Backdrop */
 @import "./modules/story.css";			/* Story */
+@import "./modules/details.css";		/* Details */
+@import "./modules/isometric.css";		/* Isometric */
 
 @import "./plugins/gforms.css";			/* Gravity Forms */

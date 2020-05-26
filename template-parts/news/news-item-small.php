@@ -1,11 +1,11 @@
 <?php
 /**
- * news-item.php
+ * news-item-small.php
  */
 
 ?>
 
-<article class="news-item">
+<article class="news-item news-item--small">
 	<div class="news-item__meta">
 		<div class="news-item__meta-wrapper">
 			<time datetime="<?php the_time( 'd-m-Y' ); ?>">

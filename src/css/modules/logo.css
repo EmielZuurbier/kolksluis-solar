@@ -1,29 +1,77 @@
 .logo {
 	display: block;
-	width: 100%;
-	height: auto;
+	height: 100%;
+	width: auto;
 }
 
 .logo rect,
 .logo polyline {
-	transition: var(--duration-average) var(--easing);
+	stroke-width: 6px;
+}
+
+.logo rect,
+.logo polyline,
+.logo text {
+	transition: 350ms var(--easing);
 	transition-property: fill, stroke;
+}
+
+[scrolled] .logo rect,
+[scrolled] .logo polyline,
+[scrolled] .logo text {
+	transition: 350ms var(--easing);
 }
 
 .logo rect {
 	fill: var(--color-light);
+	fill: none;
 	stroke: var(--color-light);
 }
 
 .logo polyline {
 	stroke: var(--color-light);
+	fill: none;
 }
 
-.banner[scrolled] .logo rect {
+.logo text {
+	fill: var(--color-light);
+	font-family: 'Square Font';
+	font-weight: normal;
+	font-size: 1100px;
+}
+
+.banner[scrolled] .logo rect,
+.is-menu-open .logo rect {
+	fill: none;
+	stroke: #FF9936;
+	/* stroke: url('#linear-gradient'); */
+}
+
+.banner[scrolled] .logo .panel-2,
+.is-menu-open .logo .panel-2 {
+	stroke: #E75761;
+	/* stroke: url('#linear-gradient'); */
+}
+
+.banner[scrolled] .logo .panel-3,
+.is-menu-open .logo .panel-3 {
+	stroke: #B01717;
+	/* stroke: url('#linear-gradient'); */
+}
+
+.banner[scrolled] .logo .panel-4,
+.is-menu-open .logo .panel-4 {
+	stroke: #5D28EA;
+	/* stroke: url('#linear-gradient'); */
+}
+
+.banner[scrolled] .logo text,
+.is-menu-open .logo text {
 	fill: var(--color-dark-alt);
-	stroke: var(--color-dark-alt);
 }
 
-.banner[scrolled] .logo polyline {
-	stroke: var(--color-dark-alt);
+.logo-title {
+	font-family: var(--font-ailerons);
+	color: #ffffff;
+	margin: 0;
 }

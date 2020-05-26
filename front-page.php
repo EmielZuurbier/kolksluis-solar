@@ -34,6 +34,10 @@ get_header();
 				kss_get_news(); ?>
 
 				<?php
+				// Map
+				kss_get_map(); ?>
+
+				<?php
 				// About 
 				kss_get_about(); ?>
 

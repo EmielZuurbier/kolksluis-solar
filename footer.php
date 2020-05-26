@@ -1,17 +1,11 @@
 <?php
 /**
- * Theme:				
- * Template:			footer.php
- * Description:			
+ * footer.php
  */
 ?>
 
-		<footer class="footer">
-			<div class="footer-container">
-				
-			</div>
-		</footer>
-
-		<?php wp_footer(); ?>
+		<?php 
+		kss_get_footer();
+		wp_footer(); ?>
 	</body>
 </html>

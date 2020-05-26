@@ -1,0 +1,20 @@
+.panel {
+	--panel-rows: 1.5em 1fr 1.5em;
+	--panel-columns: 1.5em 1fr 1.5em;
+	display: grid;
+    grid-template-rows: var(--panel-rows);
+    grid-template-columns: var(--panel-columns);
+}
+
+.panel::before {
+	grid-area: 1 / 2 / 3 / 4;
+	content: "";
+    background: var(--gradient-accent);
+}
+
+.panel__content {
+	grid-area: 2 / 1 / 4 / 3;
+	box-shadow: var(--panel-shadow);
+    background-color: var(--color-dark-alt);
+    z-index: 1;
+}

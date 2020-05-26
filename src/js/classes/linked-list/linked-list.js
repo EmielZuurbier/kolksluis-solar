@@ -15,9 +15,7 @@ export default class LinkedList {
 	/**
 	 * Initialize without any settings.
 	 */
-	constructor() {
-		this[head] = null;
-	}
+	[head] = null;
 
 	/**
 	 * Returns iterable object of all values of the nodes.

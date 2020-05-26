@@ -20,6 +20,7 @@ $query = new WP_Query( $args );
 	<div class="layout__container">
 		<header class="layout__header">
 			<h2>Wie zijn Kolksluis Solar?</h2>
+			<p>Kolksluis Solar is opgericht door 4 leden van de familie Zuurbier die<br> geloven in de toekomst van duurzame energie.</p>
 		</header>
 		<div class="layout__content">
 			<div class="layout__members">

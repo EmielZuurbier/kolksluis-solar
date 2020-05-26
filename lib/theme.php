@@ -164,6 +164,12 @@ function kss_change_classes_to_bem_notation( $classes ) {
 	return $bem_classes;
 }
 
+/**
+ * Add stagger animation to nav menu item.
+ * 
+ * @since	1.0
+ * @link	https://developer.wordpress.org/reference/functions/add_filter/
+ */
 add_filter( 'nav_menu_item_stagger', 'kss_add_transition_to_nav_menu_item', 10, 5 );
 function kss_add_transition_to_nav_menu_item( $walker, $depth, $id, $class_names, $indent ) {
 	$delay = 150;
@@ -190,7 +196,7 @@ function kss_add_transition_to_nav_menu_item( $walker, $depth, $id, $class_names
  */
 add_action( 'admin_enqueue_scripts', 'kss_admin_style' );
 function kss_admin_style() {
-	wp_enqueue_style( 'admin_style', get_template_directory_uri() . '/src/admin/admin.css' );
+	wp_enqueue_style( 'admin_style', get_template_directory_uri() . '/assets/admin/admin.css' );
 }
 
 /**
@@ -330,6 +336,15 @@ function kss_get_news( $name = null ) {
 }
 
 /**
+ * Gets the map template using get_template_part.
+ * 
+ * @param	string $name Specific template to get.
+ */
+function kss_get_map( $name = null ) {
+	get_template_part( './template-parts/map/map', $name );
+}
+
+/**
  * Gets the about template using get_template_part.
  * 
  * @param	string $name Specific template to get.
@@ -345,6 +360,24 @@ function kss_get_about( $name = null ) {
  */
 function kss_get_layout( $name = null ) {
 	get_template_part( './template-parts/layout/layout', $name );
+}
+
+/**
+ * Gets the footer template using get_template_part.
+ * 
+ * @param	string $name Specific template to get.
+ */
+function kss_get_footer( $name = null ) {
+	get_template_part( './template-parts/footer/footer', $name );
+}
+
+/**
+ * Gets the background template using get_template_part.
+ * 
+ * @param	string $name Specific template to get.
+ */
+function kss_get_background( $name = null ) {
+	get_template_part( './template-parts/background/background', $name );
 }
 
 /**

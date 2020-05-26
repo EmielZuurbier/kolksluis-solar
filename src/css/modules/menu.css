@@ -117,6 +117,7 @@
 	display: grid;
 	grid-template-rows: 2px;
 	grid-template-columns: 1.25em;
+	margin: auto;
 }
 
 .menu__toggle-inner::before,

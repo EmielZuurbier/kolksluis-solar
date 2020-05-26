@@ -5,3 +5,11 @@
 		url('../../../assets/media/fonts/ailerons-typeface-webfont.woff') format('woff'),
 		url('../../../assets/media/fonts/ailerons-typeface-webfont.ttf') format('ttf');
 }
+
+@font-face {
+	font-family: 'Square Font';
+	font-weight: 400;
+	src: url('../../../assets/media/fonts/squarefont.woff2') format('woff2'),
+		url('../../../assets/media/fonts/squarefont.woff') format('woff'),
+		url('../../../assets/media/fonts/squarefont.ttf') format('ttf');
+}
