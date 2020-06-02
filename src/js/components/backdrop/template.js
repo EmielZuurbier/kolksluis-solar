@@ -9,7 +9,9 @@ export const template = new Template(() => /*template*/`
 
         :host {
             all: initial;
-            display: block;
+            display: grid;
+            grid-template:
+                "canvas" 1fr / 1fr;
             contain: content;
             position: relative;
             font-size: 100%;
@@ -24,9 +26,7 @@ export const template = new Template(() => /*template*/`
 		}
 		
 		canvas {
-			display: block;
-			width: 100%;
-			height: 100%;
+			grid-area: canvas;
 		}
         
     </style>

@@ -1,0 +1,23 @@
+.contact {
+
+}
+
+.contact__list {
+	list-style: none;
+}
+
+.contact__item {
+	margin: 1.5em 0;
+}
+
+.contact__item:first-child {
+	margin-top: 0;
+}
+
+.contact__item:last-child {
+	margin-bottom: 0;
+}
+
+.contact__link {
+	color: var(--color-light);
+}

@@ -2,3 +2,26 @@
 	display: flex;
 	flex-flow: row wrap;
 } */
+
+.acf-hero-grid > .acf-input > .acf-fields {
+	display: grid;
+	grid-template-rows: auto auto;
+	grid-template-columns: 1fr 1fr;
+	grid-template-areas:
+		"title thumbnail"
+		"intro thumbnail";
+}
+
+.acf-hero-grid > .acf-input > .acf-fields .acf-hero-grid-title {
+	grid-area: title;
+}
+
+.acf-hero-grid > .acf-input > .acf-fields .acf-hero-grid-intro {
+	grid-area: intro;
+}
+
+.acf-hero-grid > .acf-input > .acf-fields .acf-hero-grid-thumbnail {
+	grid-area: thumbnail;
+	border-top: none;
+	border-left: #EEEEEE solid 1px;
+}

@@ -6,7 +6,20 @@
 /**
  * Include the nav walker
  */
-require get_template_directory() . '/classes/class-nav-walker.php';
+require_once get_template_directory() . '/classes/class-nav-walker.php';
+
+/**
+ * Include the Form_Handler class.
+ */
+require_once get_template_directory() . '/classes/class-form-handler.php';
+
+add_action( 'init', 'setup_form_handlers' ); 
+function setup_form_handlers() {
+
+	// Create contact form handler.
+	$contact_form_handler = new Form_Handler( 'contact-form', 'contact-form' );
+
+}
 
 /**
  * setup_theme_support
@@ -372,12 +385,39 @@ function kss_get_footer( $name = null ) {
 }
 
 /**
- * Gets the background template using get_template_part.
+ * Gets the backdrop template using get_template_part.
  * 
  * @param	string $name Specific template to get.
  */
-function kss_get_background( $name = null ) {
-	get_template_part( './template-parts/background/background', $name );
+function kss_get_backdrop( $name = null ) {
+	get_template_part( './template-parts/backdrop/backdrop', $name );
+}
+
+/**
+ * Gets the form template using get_template_part.
+ * 
+ * @param	string $name Specific template to get.
+ */
+function kss_get_form( $name = null ) {
+	get_template_part( './template-parts/form/form', $name );
+}
+
+function kss_get_url_of_children_by_page_id( $page_id ) {
+	$urls = array();
+	$args = array(
+		'post_type'			=> array( 'page' ),
+		'posts_per_page'	=> 1,
+		'post_parent'		=> $page_id
+	);
+	$query = new WP_Query( $args );
+	if ( $query->have_posts() ) {
+		while ( $query->have_posts() ) {
+			$query->the_post();
+			array_push( $urls, get_the_permalink() );
+		}
+		wp_reset_postdata();
+	} 
+	return $urls;
 }
 
 /**

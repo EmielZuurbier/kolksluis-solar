@@ -3,6 +3,12 @@
  * customizer.php
  */
 
+
+/**
+ * Include the TinyMCE field.
+ */
+require_once get_template_directory() . '/classes/class-tinymce-customizer.php';
+
 /**
  * register_customizer_alert
  * 

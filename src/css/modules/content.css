@@ -1,7 +1,9 @@
+.flow {
+	position: relative;
+}
+
 .content {
-	font-size: 1.25em;
-	font-weight: 300;
-	line-height: 1.6;
+	
 }
 
 .content h2 {

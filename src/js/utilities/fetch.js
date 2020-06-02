@@ -3,6 +3,13 @@
  */
 
 /**
+ * @function	isResponseOk
+ * @param 		{Response} response 
+ * @returns		{boolean}
+ */
+export const isResponseOk = response => response.ok === true;
+
+/**
  * @function    isInformationalResponse
  * @param       {Response} response 
  * @returns     {boolean}
@@ -59,3 +66,46 @@ export async function* fetchIterator(resources, init = {}) {
         yield response;
     }
 }
+
+/**
+ * Fetches posts based on a FormData instance containing the parameters
+ * for retrieving the posts of choice from the admin-ajax.php template.
+ * 
+ * @function	postFormData
+ * @param 		{FormData} data A FormData instance with data for the request.
+ * @param 		{string} [resource=wp.ajax] The URL to fetch from.
+ * @returns		{Promise} Returns a promise with a string on resolve.
+ */
+export const postFormData = async (data, resource = wp.ajax) => {
+
+	// Stop the function if no FormData instance is given.
+	if (typeof data === 'undefined' || !(data instanceof FormData)) {
+		throw new Error('data parameter is not an instance of FormData');
+	}
+
+	// Create a new URL instance.
+	const url = new URL(resource);
+	const action = data.get('action');
+	url.searchParams.set('action', action);
+
+	// Set the body to the options.
+	const options = {
+		method: 'POST',
+		body: data
+	};
+
+	// Fetch the request.
+	const response = await fetch(url, options);
+
+	// If response succeeds return the html.
+	if (isResponseOk(response)) {
+		const html = await response.json();
+		return html;
+	}
+
+	// Return the error.
+	const error = new Error(response.statusText);
+	error.response = response;
+	throw error;
+
+};

@@ -1,5 +1,6 @@
 form {
-
+	position: relative;
+	width: 100%;
 }
 
 legend {
@@ -7,7 +8,11 @@ legend {
 }
 
 label {
-
+	display: block;
+	font-family: var(--font-montserrat);
+	font-size: 1em;
+	line-height: 2;
+	color: var(--color-light);
 }
 
 input[type="text"],
@@ -28,7 +33,13 @@ select {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	font-family: inherit;
+	font-family: var(--font-montserrat);
+	font-size: 1em;
+	background: none;
+	color: var(--color-light);
+	border: 0;
+	border-bottom: 1px solid var(--color-light);
+	width: 100%;
 }
 
 input::-webkit-input-placeholder,
@@ -158,7 +169,7 @@ input:required {
 }
 
 textarea {
-
+	border: 1px solid var(--color-light);
 }
 
 select {
@@ -194,7 +205,9 @@ button,
 button[type="button"],
 button[type="submit"],
 button[type="reset"] {
-
+	appearance: none;
+	border: 0;
+	padding: 0;
 }
 
 button:hover,
@@ -213,4 +226,64 @@ button[type="button"]:active,
 button[type="submit"]:active,
 button[type="reset"]:active {
 	
+}
+
+.form {
+	grid-area: form;
+	display: grid;
+	grid-auto-rows: auto;
+	grid-template-columns: 1fr;
+	grid-gap: 3.5em;
+	gap: 3.5em;
+}
+
+.form__group {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr;
+}
+
+.form__group--textarea {
+	grid-template-rows: 1fr auto;
+}
+
+.form__input,
+.form__label {
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.form__input,
+.form__textarea {
+	transition: background-color var(--duration-fast) var(--easing);
+}
+
+.form__input {
+	padding: 0 0.3125em;
+	z-index: 2;
+}
+
+.form__textarea {
+	grid-area: 2 / 1 / 3 / 2;
+	padding: 1em;
+}
+
+.form__input:focus,
+.form__textarea:focus {
+	outline: none;
+	background-color: var(--color-dark-alt);
+}
+
+.form__label {
+	transform-origin: left top;
+	transition: transform var(--duration-fast) var(--easing);
+	z-index: 1;
+}
+
+.form__group[focus] .form__label {
+	transform: translate3d(0, -100%, 0) scale(0.75);
+}
+
+.form__footer {
+	display: flex;
+	justify-content: flex-end;
 }

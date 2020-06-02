@@ -42,6 +42,7 @@ $templates = [
 	'lib/theme.php',
 	'lib/shortcodes.php',
 	'lib/widgets.php',
+	'lib/mapbox.php'
 ];
 
 // $templates = [

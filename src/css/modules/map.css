@@ -5,7 +5,7 @@
     display: grid;
     grid-template-rows: var(--grid-rows);
 	grid-template-columns: var(--grid-wide);
-	
+	height: 25em;
 }
 
 .map::before {
@@ -18,13 +18,13 @@
 .map::after {
 	grid-area: 1 / 1 / 4 / 4;
 	content: "";
-	padding-top: 56.25%;
-	box-shadow: var(--panel-shadow);
+	/* padding-top: 56.25%; */
 	z-index: 1;
 }
 
 .map__content {
 	grid-area: 1 / 1 / 3 / 4;
 	background-color: var(--color-dark-alt);
+	box-shadow: var(--panel-shadow);
 	z-index: 3;
 }

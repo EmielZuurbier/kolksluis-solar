@@ -9,7 +9,7 @@
 	<figure class="hero__thumbnail">
 		<img class="image image--cover" src="<?php the_post_thumbnail_url(); ?>" alt="<?php the_title(); ?>"/>
 	</figure>
-	<div class="hero__body">
+	<div class="hero__container">
 		<div class="hero__content">
 			<h4>Dit is</h4>
 			<h1 class="title title--hero">Kolksluis</span> <span>Solar</span></h1>

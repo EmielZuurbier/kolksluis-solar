@@ -24,6 +24,12 @@ function enqueue_theme_styles() {
 	wp_deregister_style( 'wp-block-library-theme' );
 
 	/**
+	 * Mapbox API styles.
+	 */
+	wp_register_style( 'mapbox', 'https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css', false, false, 'all' );
+	wp_enqueue_style( 'mapbox' );
+
+	/**
 	 * Style
 	 * 
 	 * Main stylesheet of this theme
@@ -101,6 +107,7 @@ function enqueue_theme_scripts() {
 		'ajax' 			=> admin_url( 'admin-ajax.php' ),
 		'theme' 		=> $template_dir,
 		'rest'			=> esc_url( get_rest_url() ),
+		'nonce'			=> wp_create_nonce( 'wp_rest' )
 	) );
 	wp_enqueue_script( 'script' );
 

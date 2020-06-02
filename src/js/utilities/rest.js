@@ -19,7 +19,7 @@ import { createQueryableURIString } from './tools.js';
  * @param	    {string} [rest=wp.rest] Url of REST API.
  * @returns	    {Promise}
  */
-export const getRestData = async (route = '/wp/v2/posts', args = {}, rest = wp.rest) => {
+export const getRestData = async (route = 'wp/v2/posts', args = {}, rest = wp.rest) => {
 
 	// Check if args parameter is set and if it is an object.
 	if ('object' !== typeof args) throw new Error('Args not set or not an object');
@@ -27,6 +27,10 @@ export const getRestData = async (route = '/wp/v2/posts', args = {}, rest = wp.r
 	// Create endpoint with arguments for request.
 	const url = new URL(`${rest}${route}`);
 	url.search = createQueryableURIString(args);
+
+	const headers = new Headers({
+		'X-WP-Nonce': wp.nonce
+	});
 
 	// Fetch the request.
 	const response = await fetch(url, {

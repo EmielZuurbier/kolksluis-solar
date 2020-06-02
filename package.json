@@ -66,6 +66,7 @@
     "last 1 Chrome versions"
   ],
   "dependencies": {
-    "classes": "^0.3.0"
+    "classes": "^0.3.0",
+    "mapbox-gl": "^1.10.1"
   }
 }

@@ -11,8 +11,6 @@ get_header();
 
 <main role="main">
 
-	<canvas class="js-backdrop backdrop"></canvas>
-
 	<article class="story" role="article">
 		<div class="js-ajax-container">
 			<div class="js-ajax-content">
@@ -21,25 +19,29 @@ get_header();
 				// Hero
 				kss_get_hero( 'front-page' ); ?>
 
-				<?php 
-				// Content
-				get_template_part( './inc/content/content', 'front-page' ); ?>
+				<div class="flow">
 
-				<?php
-				// Intro 
-				kss_get_intro(); ?>
+					<?php
+					// Backdrop
+					kss_get_backdrop(); ?>
 
-				<?php
-				// News 
-				kss_get_news(); ?>
+					<?php
+					// Intro 
+					kss_get_intro(); ?>
 
-				<?php
-				// Map
-				kss_get_map(); ?>
+					<?php
+					// News 
+					kss_get_news(); ?>
 
-				<?php
-				// About 
-				kss_get_about(); ?>
+					<?php
+					// Map
+					kss_get_map(); ?>
+
+					<?php
+					// About 
+					kss_get_about(); ?>
+
+				</div>
 
 			</div>
 		</div>

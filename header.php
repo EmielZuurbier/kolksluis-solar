@@ -27,7 +27,7 @@
 
 		<?php 
 		// Splash screen
-		get_template_part( './inc/loader/splash' ); ?>
+		// get_template_part( './inc/loader/splash' ); ?>
 
 		<?php
 		// Canvas background

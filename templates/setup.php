@@ -13,76 +13,90 @@ $conclusion = 	get_field( 'conclusion' );
 ?>
 
 <main id="main" role="main">
-	<article class="js-ajax-container">
-		<div class="js-ajax-content">
 
-			<?php kss_get_hero( 'page' ); ?>
+	<kss-backdrop class="backdrop"></kss-backdrop>
 
-			<section id="elaboration" class="layout layout--page">
-				<div class="layout__container">
-					<div class="layout__content">
-						<div class="content">
+	<article class="story">
+		<div class="js-ajax-container">
+			<div class="js-ajax-content">
 
-							<?php if ( $elaboration[ 'title' ] ) { ?>
-								<h3><?php echo $elaboration[ 'title' ]; ?></h3>
-							<?php } ?>
+				<?php kss_get_hero( 'page' ); ?>
 
-							<?php echo $elaboration[ 'content' ]; ?>
+				<div class="flow">
 
-						</div>
-					</div>
-					<div class="layout__details">
+					<?php
+					// Backdrop
+					kss_get_backdrop(); ?>
 
-						<ul class="details details--left">
-							<?php foreach( $elaboration[ 'details' ][ 'left' ] as $detail ) { ?>
-								<li class="details__item">
-									<h4 class="detail__title"><?php echo $detail[ 'detail_title' ]; ?></h4>
-									<p class="detail__body"><?php echo $detail[ 'detail_content' ]; ?></p>
-								</li>
-							<?php }  ?>
-						</ul>
+					<section id="elaboration" class="layout layout--page">
+						<div class="layout__container">
+							<div class="layout__content">
+								<div class="content">
 
-						<div class="isometric">
+									<?php if ( $elaboration[ 'title' ] ) { ?>
+										<h3><?php echo $elaboration[ 'title' ]; ?></h3>
+									<?php } ?>
 
-						</div>
+									<?php echo $elaboration[ 'content' ]; ?>
 
-						<ul class="details details--right">
-							<?php foreach( $elaboration[ 'details' ][ 'right' ] as $detail ) { ?>
-								<li class="details__item">
-									<h4 class="detail__title"><?php echo $detail[ 'detail_title' ]; ?></h4>
-									<p class="detail__body"><?php echo $detail[ 'detail_content' ]; ?></p>
-								</li>
-							<?php } ?>
-						</ul>
+								</div>
+							</div>
+							<div class="layout__details">
 
-					</div>
-				</div>
-			</section>
+								<ul class="details details--left">
+									<?php foreach( $elaboration[ 'details' ][ 'left' ] as $detail ) { ?>
+										<li class="details__item">
+											<h4 class="detail__title"><?php echo $detail[ 'detail_title' ]; ?></h4>
+											<p class="detail__body"><?php echo $detail[ 'detail_content' ]; ?></p>
+										</li>
+									<?php }  ?>
+								</ul>
 
-			<section id="conclusion" class="layout layout--page">
-				<div class="layout__container">
-					<div class="layout__conclusion">
-						<div class="content">
+								<div class="isometric">
 
-							<?php if ( $conclusion[ 'content' ][ 'title' ] ) { ?>
-								<h3><?php echo $conclusion[ 'content' ][ 'title' ]; ?></h3>
-							<?php } ?>
+								</div>
 
-							<?php echo $conclusion[ 'content' ][ 'content' ]; ?>
+								<ul class="details details--right">
+									<?php foreach( $elaboration[ 'details' ][ 'right' ] as $detail ) { ?>
+										<li class="details__item">
+											<h4 class="detail__title"><?php echo $detail[ 'detail_title' ]; ?></h4>
+											<p class="detail__body"><?php echo $detail[ 'detail_content' ]; ?></p>
+										</li>
+									<?php } ?>
+								</ul>
 
-						</div>
-						<div class="panel">
-							<div class="panel__content">
-								<picture>
-									<source src="<?php echo $conclusion[ 'image' ][ 'url' ]; ?>">
-									<img src="<?php echo $conclusion[ 'image' ][ 'url' ]; ?>" alt="<?php echo $conclusion[ 'image' ][ 'alt' ]; ?>"/>
-								</picture>
 							</div>
 						</div>
-					</div>
-				</div>
-			</section>
+					</section>
 
+					<section id="conclusion" class="layout layout--page">
+						<div class="layout__container">
+							<div class="layout__conclusion">
+								<div class="content">
+
+									<?php if ( $conclusion[ 'content' ][ 'title' ] ) { ?>
+										<h3><?php echo $conclusion[ 'content' ][ 'title' ]; ?></h3>
+									<?php } ?>
+
+									<?php echo $conclusion[ 'content' ][ 'content' ]; ?>
+
+								</div>
+								<div class="panel">
+									<div class="panel__content">
+										<picture>
+											<source src="<?php echo $conclusion[ 'image' ][ 'url' ]; ?>">
+											<img src="<?php echo $conclusion[ 'image' ][ 'url' ]; ?>" alt="<?php echo $conclusion[ 'image' ][ 'alt' ]; ?>"/>
+										</picture>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+				</div>
+
+			</div>
+		</div>
 	</article>
 </main>
 

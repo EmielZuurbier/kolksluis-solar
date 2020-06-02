@@ -14,7 +14,10 @@
 		<div class="layout__content">
 			<div class="map">
 				<div class="map__content">
-					<kss-map></kss-map>
+					<kss-map 
+						access-token="pk.eyJ1IjoibWlsb3NhdXJ1cyIsImEiOiJja2FzM2NobmEwbGRiMnFxZm1rNG0ydDFnIn0.1chjWNs_Eom2MgUF-nfS3w"
+						map-style="mapbox://styles/milosaurus/cka9ntnsf1fcl1jpd759hdudv"
+						center='{"lat": "52.846529", "lng": "4.753624"}'></kss-map>
 				</div>
 			</div>
 		</div>

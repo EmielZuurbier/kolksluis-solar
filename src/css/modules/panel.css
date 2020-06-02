@@ -18,3 +18,7 @@
     background-color: var(--color-dark-alt);
     z-index: 1;
 }
+
+.panel__body {
+	padding: 2em;
+}
