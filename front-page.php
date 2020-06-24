@@ -26,20 +26,8 @@ get_header();
 					kss_get_backdrop(); ?>
 
 					<?php
-					// Intro 
-					kss_get_intro(); ?>
-
-					<?php
-					// News 
-					kss_get_news(); ?>
-
-					<?php
-					// Map
-					kss_get_map(); ?>
-
-					<?php
-					// About 
-					kss_get_about(); ?>
+					// Layout
+					kss_get_layout( 'front-page' ); ?>
 
 				</div>
 

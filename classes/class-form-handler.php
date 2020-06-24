@@ -11,13 +11,13 @@ require_once get_template_directory() . '/classes/class-form-fields.php';
 if ( ! class_exists( 'Form_Handler' ) ) {
 
 	/**
-	 * FormHandler
+	 * Form_Handler
 	 * 
 	 * Submit and AJAX handler of the print form.
 	 * 
 	 * @since	1.0
 	 * @author	control
-	 * @package FormHandler
+	 * @package Form_Handler
 	 */
 	class Form_Handler {
 
@@ -27,17 +27,20 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 		private $nonce = 'form_handler_nonce';
 
 		/**
+		 * @private
+		 */
+		private $action = '';
+
+		/**
 		 * __construct
 		 * 
 		 * Create a new instance with two parameters.
 		 * 
-		 * @param	string $post_action Name of post action.
-		 * @param	string $ajax_action Name of ajax action.
+		 * @param	string $action Name of post and ajax action.
 		 */
-		public function __construct( $post_action, $ajax_action )
+		public function __construct( $action )
 		{
-			$this->register_post_actions( $post_action, 'submit' );
-			$this->register_ajax_actions( $ajax_action, 'submit' );
+			$this->action = $action;
 		}
 
 		/**
@@ -45,27 +48,23 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 		 * 
 		 * Registers the form to admin_post hook so we can listen to the response.
 		 * 
-		 * @param	string $action Name of the form action.
-		 * @param	string $method Name of response method.
 		 */
-		private function register_post_actions( $action, $method ) 
+		public function register_post_actions() 
 		{
-			add_action( "admin_post_nopriv_{$action}", array( $this, $method ), 10, 0 );
-			add_action( "admin_post_{$action}", array( $this, $method ), 10, 0 );
+			add_action( "admin_post_nopriv_{$this->action}", array( $this, 'submit' ), 10, 0 );
+			add_action( "admin_post_{$this->action}", array( $this, 'submit' ), 10, 0 );
 		}
 
 		/**
 		 * register_ajax_actions
 		 * 
 		 * Registers the form to admin_ajax hook so we can listen to the response.
-		 * 
-		 * @param	string $action Name of the form action.
-		 * @param	string $method Name of response method.
+		 *
 		 */
-		private function register_ajax_actions( $action, $method ) 
+		public function register_ajax_actions() 
 		{
-			add_action( "wp_ajax_nopriv_{$action}", array( $this, $method ), 10, 0 );
-			add_action( "wp_ajax_{$action}", array( $this, $method ), 10, 0 );
+			add_action( "wp_ajax_nopriv_{$this->action}", array( $this, 'submit' ), 10, 0 );
+			add_action( "wp_ajax_{$this->action}", array( $this, 'submit' ), 10, 0 );
 		}
 
 		/**
@@ -74,7 +73,7 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 		 * Submit entry point. From here we look at the submitted values and 
 		 * create logic based on the input.
 		 */
-		public function submit() 
+		private function submit() 
 		{
 
 			// Check security.
@@ -85,14 +84,54 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 
 			// Clean up fields.
 			$fields = $this->sanitize_fields( $_POST );
+			if ( $fields === false ) {
 
-			$home_url = wp_parse_url( get_site_url() );
-			$request_url = wp_parse_url(wp_get_referer() );
+				$response = array(
+					'status'	=> 'failed',
+					'message'	=> __( 'Some fields are filled incorrectly. Please try again', THEME_TEXT_DOMAIN ),
+					'entries'	=> $fields->get_entries(),
+					'redirect'	=> false
+				);
+
+				// Return response.
+				echo json_encode( $response );
+				die();
+
+			}
+
+			// Get mail template and replace the fields.
+			$mail_template = file_get_contents( get_template_directory_uri() . '/assets/mail/mail-template.html' );
+			$mail_fields = array(
+				'$name'		=> $fields->get( 'name' ),
+				'$email'	=> $fields->get( 'email' ),
+				'$phone'	=> $fields->get( 'phone' ),
+				'$message'	=> $fields->get( 'message' )
+			);
+
+			// Get the admin email address.
+			$mail_to = get_option( 'admin_email' );
+
+			// Get the email address of the user.
+			$mail_from = $fields->get( 'email' );
+
+			// Set the subject of the mail.
+			$mail_subject = 'Bericht uit contact formulier van kolksluis.solar';
+
+			// Create mail body with the variables injected.
+			$mail_body = strtr( $mail_template, $mail_fields );
+
+			// Send email.
+			$mail_sent = $this->send_email(
+				$mail_to,
+				$mail_from,
+				$mail_subject,
+				$mail_body
+			);
 
 			// Return a success response.
 			$response = array(
 				'status'    => 'success',
-				'message'   => __( 'All fields are filled in correctly. Thank you for your request', THEME_TEXT_DOMAIN ),
+				'message'   => __( 'All fields are filled in correctly and email has been sent. Thank you for your request', THEME_TEXT_DOMAIN ),
 				'entries'   => $fields->get_entries(),
 				'redirect'	=> $fields->get( 'redirect' ),
 			);
@@ -112,7 +151,7 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 		 * @param   array $fields $_POST or $_GET array with values.
 		 * @return  Fields
 		 */
-		public function sanitize_fields( $fields ) 
+		private function sanitize_fields( $fields ) 
 		{
 
 			// Create new Form_Fields instance.
@@ -125,27 +164,42 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 				// Sanitize your fields here.
 				if ( $field === 'name' )
 				{
-					$sanitized_value = sanitize_text_field( $value );
-					$form_fields->set( 'name', $sanitized_value );
+					if ( $value !== '' )
+					{
+						$sanitized_value = sanitize_text_field( $value );
+						$form_fields->set( 'name', $sanitized_value );
+					} 
+					else
+					{
+						return false;
+					}
 				}
 
 				else if ( $field === 'phone' )
 				{
-					$is_valid_phone_number = $this->validate_phone( $value );
+					$is_valid_phone_number = Form_Handler::validate_phone( $value );
 					if ( $is_valid_phone_number ) 
 					{
 						$sanitized_value = sanitize_text_field( $value );
 						$form_fields->set( 'phone', $sanitized_value );
 					}
+					else
+					{
+						return false;
+					}
 				}
 
 				else if ( $field === 'email' ) 
 				{
-					$is_valid_email = $this->validate_email( $value );
+					$is_valid_email = Form_Handler::validate_email( $value );
 					if ( $is_valid_email ) 
 					{
 						$sanitized_value = sanitize_email( $value );
 						$form_fields->set( 'email', $sanitized_value );
+					}
+					else
+					{
+						return false;
 					}
 				}
 

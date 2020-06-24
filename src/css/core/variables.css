@@ -1,12 +1,13 @@
 :root {
 	--color-light: #ffffff;
-	--color-light-alt: #8d8d8d;
+	--color-light-alt: #e2e2e2;
 	--color-dark: #000000;
 	--color-dark-alt: #111111;
 	--color-gray: #252525;
 	--color-accent: #4D2BA8;
-	--color-alt: #A82B4D;
+	--color-hot: #A82B4D;
 	--color-sun: #cb8037;
+	--color-happy: greenyellow;
 
 	--panel-shadow: 
 		0em 0em 1.5em 0 rgba(0, 0, 0, 0.6);
@@ -31,6 +32,13 @@
 		#b04a51,
 		#cb8037
 	);
+	--gradient-accent-tilted: linear-gradient(-90deg,
+		#4d2ba8,
+		#602168, 
+		#742828,
+		#b04a51,
+		#cb8037
+	);
 	--gradient-accent-decay: linear-gradient(0deg, 
 		transparent 0em,
 		#4d2ba8 5em,
@@ -45,10 +53,15 @@
 
 	--font-ailerons: 'Ailerons', sans-serif;
 	--font-montserrat: 'Montserrat', sans-serif;
+	--text-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.5);
 
-	--grid-container-rows: 3.5em 1fr 3.5em;
-	--grid-container-columns: auto 1fr auto;
-	--container-width: 40rem;
+	--container-width: minmax(0, 32rem);
+	--container-padding: 0 1.5em;
+
+	--content-padding: 1.5em;
+
+	--grid-container-rows: auto;
+	--grid-container-columns: 1fr var(--container-width) 1fr;
 
 	--duration-instant: 75ms;
 	--duration-fast: 150ms;
@@ -66,8 +79,10 @@
 @media all and (min-width: 32em) {
 	
 	:root {
-		--container-width: 30rem;
-		--grid-container-columns: 1fr minmax(0, var(--container-width)) 1fr;
+		--container-width: minmax(32rem, 42rem);
+		--container-padding: 0 2.5em;
+
+		--content-padding: 2.5em;
 	}
 
 }
@@ -75,7 +90,7 @@
 @media all and (min-width: 48em) {
 	
 	:root {
-		--container-width: 52rem;
+		--container-width: minmax(48rem, 58rem);
 	}
 
 }
@@ -83,7 +98,7 @@
 @media all and (min-width: 64em) {
 
 	:root {
-		--container-width: 60rem;
+		--container-width: minmax(60rem, 72rem);
 	}
 
 }

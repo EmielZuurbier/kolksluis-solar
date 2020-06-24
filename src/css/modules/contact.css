@@ -1,5 +1,18 @@
 .contact {
+	display: grid;
+	grid-template:
+		"form" auto
+		"info" auto / 1fr;
+	grid-gap: 2px;
+	gap: 2px;
+}
 
+.contact__form {
+	grid-area: form;
+}
+
+.contact__info {
+	grid-area: info;
 }
 
 .contact__list {
@@ -7,6 +20,8 @@
 }
 
 .contact__item {
+	display: flex;
+	align-items: baseline;
 	margin: 1.5em 0;
 }
 
@@ -18,6 +33,23 @@
 	margin-bottom: 0;
 }
 
+.contact__item-body {
+	flex: 1 1 auto;
+}
+
+.contact__item-header {
+	flex: 0 0 4.5em;
+}
+
 .contact__link {
 	color: var(--color-light);
+}
+
+@media all and (min-width: 48em) {
+
+	.contact {
+		grid-template:
+			"form info" 1fr / 1fr minmax(20em, 30em);
+	}
+
 }

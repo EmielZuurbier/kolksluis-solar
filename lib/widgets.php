@@ -20,18 +20,21 @@ require get_template_directory() . '/classes/class-button-widget.php';
  */
 add_action( 'widgets_init', 'unregister_default_widgets' );
 function unregister_default_widgets() {
-	// unregister_widget( 'WP_Widget_Pages' );
-	// unregister_widget( 'WP_Widget_Calendar' );
-	// unregister_widget( 'WP_Widget_Archives' );
-	// unregister_widget( 'WP_Widget_Links' );
-	// unregister_widget( 'WP_Widget_Meta' );
-	// unregister_widget( 'WP_Widget_Search' );
+	unregister_widget( 'WP_Widget_Media_Audio' );
+	unregister_widget( 'WP_Widget_Media_Video' );
+	unregister_widget( 'WP_Widget_Media_Gallery' );
+	unregister_widget( 'WP_Widget_Pages' );
+	unregister_widget( 'WP_Widget_Calendar' );
+	unregister_widget( 'WP_Widget_Archives' );
+	unregister_widget( 'WP_Widget_Links' );
+	unregister_widget( 'WP_Widget_Meta' );
+	unregister_widget( 'WP_Widget_Search' );
 	// unregister_widget( 'WP_Widget_Text' );
-	// unregister_widget( 'WP_Widget_Categories' );
-	// unregister_widget( 'WP_Widget_Recent_Posts' );
-	// unregister_widget( 'WP_Widget_Recent_Comments' );
-	// unregister_widget( 'WP_Widget_RSS' );
-	// unregister_widget( 'WP_Widget_Tag_Cloud' );
+	unregister_widget( 'WP_Widget_Categories' );
+	unregister_widget( 'WP_Widget_Recent_Posts' );
+	unregister_widget( 'WP_Widget_Recent_Comments' );
+	unregister_widget( 'WP_Widget_RSS' );
+	unregister_widget( 'WP_Widget_Tag_Cloud' );
 	// unregister_widget( 'WP_Nav_Menu_Widget' );
 }
 
@@ -110,54 +113,6 @@ function register_theme_sidebars() {
 		'description'   => __( 'Second column in the footer at the end of the page.', THEME_TEXT_DOMAIN ),
 		'before_title'  => '<h3 class="title title--footer">',
 		'after_title'   => '</h3>',
-		'before_widget' => '<div class="widget" id="%1$s">',
-		'after_widget'  => '</div>',
-	);
-	register_sidebar( $args );
-
-	$args = array(
-		'id'            => 'sidebar-footer-3',
-		'class'         => 'footer-column-3',
-		'name'          => __( 'Third footer column', THEME_TEXT_DOMAIN ),
-		'description'   => __( 'Third column in the footer at the end of the page.', THEME_TEXT_DOMAIN ),
-		'before_title'  => '<h3 class="title title--footer">',
-		'after_title'   => '</h3>',
-		'before_widget' => '<div class="widget" id="%1$s">',
-		'after_widget'  => '</div>',
-	);
-	register_sidebar( $args );
-
-	$args = array(
-		'id'            => 'sidebar-footer-4',
-		'class'         => 'footer-column-4',
-		'name'          => __( 'Fourth footer column', THEME_TEXT_DOMAIN ),
-		'description'   => __( 'Fourth column in the footer at the end of the page.', THEME_TEXT_DOMAIN ),
-		'before_title'  => '<h3 class="title title--footer">',
-		'after_title'   => '</h3>',
-		'before_widget' => '<div class="widget" id="%1$s">',
-		'after_widget'  => '</div>',
-	);
-	register_sidebar( $args );
-
-	$args = array(
-		'id'            => 'sidebar-footer-bottom-left',
-		'class'         => 'footer-bottom-left',
-		'name'          => __( 'Bottom left footer column', THEME_TEXT_DOMAIN ),
-		'description'   => __( 'Bottom left area in the footer at the end of the page.', THEME_TEXT_DOMAIN ),
-		'before_title'  => '<h6>',
-		'after_title'   => '</h6>',
-		'before_widget' => '<div class="widget" id="%1$s">',
-		'after_widget'  => '</div>',
-	);
-	register_sidebar( $args );
-
-	$args = array(
-		'id'            => 'sidebar-footer-bottom-right',
-		'class'         => 'footer-bottom-right',
-		'name'          => __( 'Bottom right footer column', THEME_TEXT_DOMAIN ),
-		'description'   => __( 'Bottom right area in the footer at the end of the page.', THEME_TEXT_DOMAIN ),
-		'before_title'  => '<h6>',
-		'after_title'   => '</h6>',
 		'before_widget' => '<div class="widget" id="%1$s">',
 		'after_widget'  => '</div>',
 	);

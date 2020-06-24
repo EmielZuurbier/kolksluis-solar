@@ -1,100 +1,45 @@
 .menu {
-	--toggle-transition: transform 350ms cubic-bezier(0.42, 0, 0.12, 0.97);
-
+	display: block;
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	height: 100%;
+}
+
+.menu--banner {
+	display: flex;
+	align-items: stretch;
+	margin: 0 0.25em;
 }
 
 .menu__item {
 	font-size: 1em;
-	margin: 0.25em 0;
-	opacity: 0;
-	visibility: hidden;
-	transform: translate3d(1em, 0, 0);
-	transition-duration: 150ms;
-	transition-property: opacity, visibility, transform;
-	transition-timing-function: cubic-bezier(0.42, 0, 0.12, 0.97);
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-	.menu__item {
-		transform: translate3d(0, 0, 0);
-		opacity: 1;
-		visibility: visible;
-	}
-
-}
-
-/* Mixed class needed for transition animation */
-.banner__menu[open] .menu__item {
-	transform: translate3d(0, 0, 0);
-	opacity: 1;
-	visibility: visible;
-}
-
-.menu__item:first-child {
-	margin-top: 0;
-}
-
-.menu__item:last-child {
-	margin-bottom: 0;
+	margin: 0 0.25em;
 }
 
 .menu__link {
-	display: grid;
-	grid-template-rows: var(--button-layout);
-	grid-template-columns: var(--button-layout);
-	grid-template-areas:
-		".   .   ."
-		". label ."
-		".   .   .";
-	font-family: 'Montserrat', sans-serif;
-	height: 3.5em;
-	color: var(--color-dark-alt);
-	pointer-events: none;
-	transition: 250ms ease-in-out;
-	transition-property: box-shadow;
+	font-size: 0.875em;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 0 1rem;
+	color: var(--color-light);
+	background-color: transparent;
+	text-shadow: var(--text-shadow);
+	transition-property: color, background-color, box-shadow, text-shadow;
 }
 
 .menu__link:hover {
-	box-shadow: var(--button-shadow);
-}
-
-.banner__menu[open] .menu__link {
-	pointer-events: all;
-}
-
-.menu__link::before {
-	content: '';
-	grid-area: 1 / 1 / 4 / 4;
-	background: var(--gradient-accent-angle);
-	background: var(--color-light);
-	opacity: 0;
-	visibility: hidden;
-	transition: 250ms ease-in-out;
-	transition-property: opacity, visibility;
-}
-
-/* .menu__link:hover::before {
-	opacity: 1;
-	visibility: visible;
-} */
-
-.menu__link span {
-	grid-area: label;
-	display: flex;
-	align-items: center;
-	padding: 0 1em;
+	color: var(--color-dark-alt);
 	background-color: var(--color-light);
-	transition: 250ms ease-in-out;
-	transition-property: background-color;
-	z-index: 1;
+	box-shadow: var(--button-shadow);
+	text-shadow: none;
 }
 
-.menu__link:hover span {
-	/* background-color: var(--color-dark-alt); */
+.banner[scrolled] .menu .menu__link,
+body.is-menu-open .menu .menu__link {
+	color: var(--color-dark-alt);
+	text-shadow: none;
 }
 
 .menu__toggle {
@@ -159,11 +104,89 @@
 	background-color: var(--color-dark-alt);
 }
 
-.menu--sub > .menu__link {
-	
-}
-
 .menu--sub > .menu__item .menu__link span {
 	color: var(--color-light);
 	background-color: var(--color-dark-alt);
+}
+
+.side-menu {
+	--toggle-transition: transform 350ms cubic-bezier(0.42, 0, 0.12, 0.97);
+	display: block;
+}
+
+.side-menu .menu__item {
+	margin: 0.5em 0;
+	opacity: 0;
+	visibility: hidden;
+	transform: translate3d(1em, 0, 0);
+	transition-duration: 150ms;
+	transition-property: opacity, visibility, transform;
+	transition-timing-function: cubic-bezier(0.42, 0, 0.12, 0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.side-menu .menu__item {
+		transform: translate3d(0, 0, 0);
+		opacity: 1;
+		visibility: visible;
+	}
+
+}
+
+/* Mixed class needed for transition animation */
+.banner__sub-menu[open] .side-menu .menu__item {
+	transform: translate3d(0, 0, 0);
+	opacity: 1;
+	visibility: visible;
+}
+
+.side-menu .menu__item:first-child {
+	margin-top: 0;
+}
+
+.side-menu .menu__item:last-child {
+	margin-bottom: 0;
+}
+
+.side-menu .menu__link {
+	font-family: 'Montserrat', sans-serif;
+	height: 3.5rem;
+	pointer-events: none;
+	color: var(--color-dark-alt);
+	transition: 250ms ease-in-out;
+	transition-property: box-shadow;
+}
+
+.side-menu .menu__link:hover {
+	box-shadow: var(--button-shadow);
+}
+
+.banner__sub-menu[open] .side-menu .menu__link {
+	pointer-events: all;
+	text-shadow: none;
+}
+
+/* .side-menu .menu--sub > .menu__item .menu__link {
+	padding: 0 1rem;
+} */
+
+/* .menu__link:hover::before {
+	opacity: 1;
+	visibility: visible;
+} */
+
+/* .side-menu .menu__link span {
+	grid-area: label;
+	display: flex;
+	align-items: center;
+	padding: 0 1em;
+	background-color: var(--color-light);
+	transition: 250ms ease-in-out;
+	transition-property: background-color;
+	z-index: 1;
+} */
+
+.side-menu .menu__link:hover span {
+	/* background-color: var(--color-dark-alt); */
 }

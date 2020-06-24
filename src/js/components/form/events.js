@@ -10,6 +10,8 @@ import { postFormData } from 'Utilities/fetch.js';
  */
 export const onSubmit = async function onSubmit(event) {
 
+	console.log('Submitting');
+
 	// Prevent default submit.
 	event.preventDefault();
 

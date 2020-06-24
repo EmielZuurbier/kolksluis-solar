@@ -9,10 +9,8 @@ export const template = new Template(() => /*template*/`
 
 		:host {
 			all: initial;
+			display: block;
 			position: relative;
-			display: grid;
-			grid-template:
-				"map" 1fr / 1fr;
 			font-size: 100%;
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
@@ -26,12 +24,27 @@ export const template = new Template(() => /*template*/`
 			height: 100%;
 		}
 
+		.container {
+			--gutter: 2px;
+			display: grid;
+			grid-template-rows: var(--gutter) 1fr var(--gutter) auto var(--gutter);
+			grid-template-columns: var(--gutter) 1fr var(--gutter);
+			height: 100%;
+		}
+
+		.container::before {
+			grid-area: 1 / 1 / 6 / 4;
+			content: "";
+			background: var(--gradient-accent);
+		}
+
 		.message{
-			grid-area: map;
+			grid-area: 2 / 2 / 3 / 3;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			padding: 1.5em;
+			background-color: var(--color-dark-alt);
 		}
 
 		.message-content {
@@ -41,11 +54,34 @@ export const template = new Template(() => /*template*/`
 		}
 
 		.map {
-			grid-area: map;
+			grid-area: 2 / 2 / 3 / 3;
 			opacity: 0;
 			visibility: hidden;
 			transition: var(--duration-average) ease-in;
 			transition-property: opacity, visibility;
+		}
+
+		.controls {
+			grid-area: 4 / 2 / 6 / 3;
+			display: grid;
+			grid-template:
+				"center" auto
+				"zoom-in" auto
+				"zoom-out" auto / 1fr;
+			grid-gap: 2px;
+			gap: 2px;
+		}
+
+		.controls-center {
+			grid-area: center;
+		}
+
+		.controls-zoom-in {
+			grid-area: zoom-in;
+		}
+
+		.controls-zoom-out {
+			grid-area: zoom-out;
 		}
 
 		:host([loaded]) .map {
@@ -57,10 +93,47 @@ export const template = new Template(() => /*template*/`
 			display: none;
 		}
 
+		::slotted(.button) {
+			width: 100%;
+			margin: 0;
+		}
+
+		@media all and (min-width: 48em) {
+
+			.controls {
+				grid-template:
+					"center center" auto
+					"zoom-in zoom-out" auto / 1fr 1fr;
+			}
+
+		}
+
+		@media all and (min-width: 64em) {
+
+			.controls {
+				grid-template:
+					"center zoom-in zoom-out" 1fr / 1fr auto auto;
+			}
+
+		}
+
 	</style>
 
-	<div class="message">
-		<span class="message-content">De kaart wordt geladen</span>
+	<div class="container">
+		<div class="message">
+			<span class="message-content">De kaart wordt geladen</span>
+		</div>
+		<div class="map"></div>
+		<div class="controls">
+			<div class="controls-center">
+				<slot name="center"></slot>
+			</div>
+			<div class="controls-zoom-in">
+				<slot name="zoom-in"></slot>
+			</div>
+			<div class="controls-zoom-out">
+				<slot name="zoom-out"></slot>
+			</div>
+		</div>
 	</div>
-	<div class="map"></div>
 `);

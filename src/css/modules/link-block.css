@@ -1,0 +1,138 @@
+.block {
+	display: block;
+	height: 100%;
+	color: var(--color-light);
+	transition: var(--duration-fast) var(--easing);
+	transition-property: color;
+}
+
+.block[href]:hover {
+	color: var(--color-dark-alt);
+}
+
+.block--light {
+	color: var(--color-dark-alt);
+}
+
+.block--light[href]:hover {
+	color: var(--color-light);
+}
+
+.block--large,
+.block--large-reverse {
+	display: grid;
+	grid-template-rows: 1fr;
+}
+
+.block--large {
+	grid-template-columns: 1fr minmax(20em, 25em);
+}
+
+.block--large-reverse {
+	grid-template-columns: minmax(20em, 25em) 1fr;
+}
+
+.block__body {
+	background-color: var(--color-dark-alt);
+	padding: var(--content-padding);
+	transition-property: background-color;
+}
+
+.block--large .block__body {
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+.block--large-reverse .block__body {
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.block[href]:hover .block__body {
+	background-color: var(--color-light);
+}
+
+.block--light .block__body {
+	background-color: var(--color-light);
+}
+
+.block--light[href]:hover .block__body {
+	background-color: var(--color-dark-alt);
+}
+
+.block__thumbnail {
+	grid-area: 1 / 1 / 2 / 2;;
+	position: relative;
+	max-height: 15em;
+	overflow: hidden;
+}
+
+.block--large .block__thumbnail {
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.block--large-reverse .block__thumbnail {
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+.block--portrait .block__thumbnail,
+.block--large .block__thumbnail,
+.block--large-reverse .block__thumbnail {
+	max-height: none;
+}
+
+.block__thumbnail::after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	opacity: 1;
+	transition: opacity var(--duration-fast) var(--easing);
+}
+
+.block[href]:hover .block__thumbnail::after,
+.block[href]:focus .block__thumbnail::after {
+	opacity: 0;
+}
+
+.block:not(.block--large, .block--large-reverse) .block__thumbnail::after {
+	left: 0;
+	width: 100%;
+	height: 5em;
+	background: linear-gradient(0deg, var(--color-dark-alt), transparent);
+}
+
+.block--large .block__thumbnail::after {
+	right: 0;
+	width: 15em;
+	height: 100%;
+	background: linear-gradient(-90deg, var(--color-dark-alt), transparent);
+}
+
+.block--large-reverse .block__thumbnail::after {
+	left: 0;
+	width: 15em;
+	height: 100%;
+	background: linear-gradient(90deg, var(--color-dark-alt), transparent);
+}
+
+.block__thumbnail img {
+	height: 100%;
+	object-fit: cover;
+	transition: transform var(--duration-fast) var(--easing);
+}
+
+.block[href]:hover img,
+.block[href]:focus img {
+	transform: scale(1.25);
+}
+
+.block__time {
+	grid-column: 2 / span 1;
+}
+
+.block__title {
+	grid-column: 2 / span 1;
+}
+
+.block__header + .block__body {
+	padding: 0 2.5em 2.5em;
+}

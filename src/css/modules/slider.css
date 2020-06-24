@@ -1,0 +1,4 @@
+.slider,
+.slider[axis="horizontal"] {
+	margin: 0 -1em;
+}

@@ -1,5 +1,5 @@
 .toggle {
-	--toggle-transition: transform 350ms var(--easing);
+	--toggle-transition: 350ms var(--easing);
 
 	font-size: 1em;
 	align-items: center;
@@ -9,16 +9,10 @@
 	margin: 0;
 	padding: 0;
 	border: 0;
-	width: 3.125rem;
 	height: 3.125rem;
-	background: none;
-	background-color: var(--color-dark-alt);
+	padding: 0 1rem;
 	cursor: pointer;
 	transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
-}
-
-.toggle--menu {
-	border-radius: 50%;
 }
 
 .toggle:focus {
@@ -43,9 +37,9 @@
 	content: "";
 	grid-area: 1 / 1 / 2 / 2;
 	display: block;
-	background-color: var(--color-light);
-	transition: transform 150ms cubic-bezier(.5,-0.35,.46,1.27);
+	background-color: currentColor;
 	transition: var(--toggle-transition);
+	transition-property: background-color, transform;
 }
 
 .toggle__inner::before {
@@ -56,29 +50,39 @@
 	transform: translate3d(0, 0.25em, 0);
 }
 
-.toggle[aria-expanded="true"] .toggle__inner::before {
+[aria-expanded="true"] .toggle .toggle__inner::before {
 	transform: translate3d(-0.25em, 0, 0) rotate(90deg);
 }
 
-.toggle[aria-expanded="true"] .toggle__inner::after {
+[aria-expanded="true"] .toggle .toggle__inner::after {
 	transform: translate3d(0.25em, 0, 0) rotate(-90deg);
 }
 
+[aria-expanded="false"] .toggle:hover .toggle__inner::before,
+[aria-expanded="false"] .toggle:hover .toggle__inner::after {
+	/* background-color: var(--color-light); */
+}
+
+/* [aria-expanded="true"] .toggle:hover .toggle__inner::before,
+[aria-expanded="true"] .toggle:hover .toggle__inner::after {
+	background-color: var(--color-dark-alt);
+} */
+
 @media all and (min-width: 64em) {
 
-	.toggle:hover:not([aria-expanded="true"]) .toggle__inner::before {
+	[aria-expanded="false"] .toggle:hover .toggle__inner::before {
 		transform: translate3d(-0.25em, -0.25em, 0);
 	}
 
-	.toggle:hover:not([aria-expanded="true"]) .toggle__inner::after {
+	[aria-expanded="false"] .toggle:hover .toggle__inner::after {
 		transform: translate3d(0.25em, 0.25em, 0);
 	}
 
-	.toggle[aria-expanded="true"]:hover .toggle__inner::before {
+	[aria-expanded="true"] .toggle:hover .toggle__inner::before {
 		transform: translate3d(-0.25em, -0.25em, 0) rotate(90deg);
 	}
 
-	.toggle[aria-expanded="true"]:hover .toggle__inner::after {
+	[aria-expanded="true"] .toggle:hover .toggle__inner::after {
 		transform: translate3d(0.25em, 0.25em, 0) rotate(-90deg);
 	}
 

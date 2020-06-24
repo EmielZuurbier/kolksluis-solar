@@ -97,10 +97,11 @@ export const postFormData = async (data, resource = wp.ajax) => {
 	// Fetch the request.
 	const response = await fetch(url, options);
 
-	// If response succeeds return the html.
+	// If response succeeds return the json.
 	if (isResponseOk(response)) {
-		const html = await response.json();
-		return html;
+		const json = await response.json();
+		console.log(json);
+		return json;
 	}
 
 	// Return the error.

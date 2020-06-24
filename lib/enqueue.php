@@ -72,8 +72,8 @@ function enqueue_theme_scripts() {
 	 * WebfontLoader
 	 * @link	https://github.com/typekit/webfontloader
 	 */
-	wp_enqueue_script( 'webfontLoader', '//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', false, false, true );
-	wp_add_inline_script( 'webfontLoader', "WebFont.load({
+	wp_register_script( 'webfont-loader', '//ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', null, false, true );
+	wp_add_inline_script( 'webfont-loader', "WebFont.load({
 		google: {
 			families: ['Montserrat:200,300,400,600&display=swap']
 		},
@@ -82,18 +82,19 @@ function enqueue_theme_scripts() {
 			urls: ['//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css?display=swap']
 		}
 	});" );
+	wp_enqueue_script( 'webfont-loader' );
 
 	/**
 	 * jQuery 
 	 * @link	http://api.jquery.com/
 	 */
-	wp_register_script( 'jquery', '//code.jquery.com/jquery-3.3.1.min.js', false, '3.3.1', false );
+	wp_register_script( 'jquery', '//code.jquery.com/jquery-3.3.1.min.js', null, '3.3.1', false );
 	// wp_enqueue_script( 'jquery' );
 
 	/**
 	 * WebComponents Polyfill
 	 */
-	wp_register_script( 'webcomponents', '//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.0/webcomponents-bundle.js', false, '2.4.0', true );
+	wp_register_script( 'webcomponents', '//cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.0/webcomponents-bundle.js', null, '2.4.0', true );
 	// wp_enqueue_script( 'webcomponents' );
 
 	/**
@@ -102,7 +103,7 @@ function enqueue_theme_scripts() {
 	 * This file includes the general script of handling
 	 * interactions and DOM modifications.
 	 */
-	wp_register_script( 'script', $template_dir . '/dist/js/script.js', false, false, true );
+	wp_register_script( 'script', $template_dir . '/dist/js/script.js', null, false, true );
 	wp_localize_script( 'script', 'wp', array(
 		'ajax' 			=> admin_url( 'admin-ajax.php' ),
 		'theme' 		=> $template_dir,
@@ -159,10 +160,10 @@ function custom_script_attributes( $tag, $handle, $src ) {
 		$tag = '<script id="' . $handle . '-js" src="' . $src . '" type="text/javascript" defer></script>';
 	} 
 	
-	// Default scripts
-	else {
-		$tag = '<script id="' . $handle . '-js" src="' . $src . '" type="text/javascript"></script>';
-	}
+	// // Default scripts
+	// else {
+	// 	$tag = '<script id="' . $handle . '-js" src="' . $src . '" type="text/javascript"></script>';
+	// }
 
 	return $tag;
 }

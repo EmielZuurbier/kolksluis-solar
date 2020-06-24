@@ -1,6 +1,7 @@
 /* jshint esversion: 6 */
 
 import CustomElementsDefiner from 'Classes/custom-elements/definer.js';
+import CookieElement from 'Components/cookie/index.js';
 import BannerElement from 'Components/banner/index.js';
 import MenuElement from 'Components/menu/index.js';
 import FlyOutElement from 'Components/flyout/index.js';
@@ -8,9 +9,14 @@ import MapBoxElement from 'Components/map/index.js';
 import InputElement from 'Components/input/index.js';
 import AJAXFormElement from 'Components/form/index.js';
 import BackdropElement from 'Components/backdrop/index.js';
-import CursorElement from 'Components/cursor/index.js';
+import LazyElement from 'Components/lazy/index.js';
+import SliderElement from 'Components/slider/index.js';
+import SlideElement from 'Components/slide/index.js';
+import VideoElement from 'Components/video/index.js';
+import SetupElement from 'Components/setup/index.js';
 
 const definer = new CustomElementsDefiner('kss')
+	.add('cookie', CookieElement)
 	.add('banner', BannerElement)
 	.add('menu', MenuElement)
 	.add('flyout', FlyOutElement)
@@ -18,7 +24,11 @@ const definer = new CustomElementsDefiner('kss')
 	.add('input', InputElement)
 	.add('form', AJAXFormElement)
 	.add('backdrop', BackdropElement)
-	.add('cursor', CursorElement)
+	.add('lazy', LazyElement)
+	.add('slider', SliderElement)
+	.add('slide', SlideElement)
+	.add('video', VideoElement)
+	.add('setup', SetupElement)
 	.defineAll();
 
 const menu = document.querySelector('.js-menu');
@@ -62,7 +72,7 @@ if (contactForm !== null) {
 			// 	}
 			// }
 		} else {
-
+			console.log(event);
 		}
 	});
 }

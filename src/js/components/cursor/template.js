@@ -32,12 +32,22 @@ export const template = new Template(() => /*template*/`
 			height: 1.25em;
 			box-shadow: var(--panel-shadow);
 			z-index: 1;
-			/* border-radius: 50%; */
-			border: 0.5em solid var(--color-light);
-			background-color: var(--color-sun);
 			box-sizing: inherit;
-			transform: rotate(45deg);
+			background-color: var(--color-sun);
+			border: 0.625em solid var(--color-light);
+			border-radius: 50%;
+			box-shadow: var(--panel-shadow);
+			transform: scale(0.5);
+			transition: var(--duration-average) var(--easing);
+			transition-property: border-top, border-left, border-right, border-bottom, border-radius, transform;
 		}
+
+		:host([hover]) .cursor-inner {
+			border-radius: 0;
+			border: 0.5em solid var(--color-light);
+			transform: rotate(135deg);
+		}
+
 
 	</style>
 

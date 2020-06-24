@@ -5,30 +5,31 @@
 
 ?>
 
-<article class="news-item">
+<article class="news-item news-item--front-page">
 	<div class="news-item__meta">
 		<div class="news-item__meta-wrapper">
-			<time datetime="<?php the_time( 'd-m-Y' ); ?>">
+			<time class="date" datetime="<?php the_time( 'd-m-Y' ); ?>">
 				<?php the_time( 'l, j F o'); ?>
 			</time>
 		</div>
 	</div>
-	<div class="news-item__content">
-		<div class="news-item__content-wrapper">
-			<figure class="news-item__thumbnail">
-				<?php kss_the_lazy_post_image(); ?>
-			</figure>
-			<header class="news-item__header">
-				<h3 class="news-item__title"><?php the_title(); ?></h3>
-			</header>
-			<div class="news-item__body">
-				<?php the_excerpt(); ?>
-			</div>
-			<div class="news-item__footer">
-				<a href="<?php the_permalink(); ?>" class="button button--light">
-					<span class="button__label">Het hele verhaal</span>
-				</a>
-			</div>
+	<div class="news-item__content panel">
+		<div class="news-item__content-wrapper panel__content">
+			<a class="block" href="<?php the_permalink(); ?>">
+				<figure class="block__thumbnail">
+					<?php kss_the_lazy_post_image(); ?>
+				</figure>
+				<div class="block__body">
+					<h3 class="block__title"><?php the_title(); ?></h3>
+					<?php echo get_field( 'hero' )[ 'intro' ]; ?>
+					<button class="button">
+						<span class="button__label">Lees meer</span> 
+						<div class="button__icon">
+							<i class="fas fa-arrow-right"></i>
+						</div>
+					</button>
+				</div>
+			</a>
 		</div>
 	</div>
 </article>

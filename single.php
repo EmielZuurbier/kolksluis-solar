@@ -6,41 +6,53 @@
 get_header();
 ?>
 
-<main role="main">
-
-	<kss-backdrop class="backdrop"></kss-backdrop>
+<main id="main" role="main">
 
 	<article class="story">
-
 		<div class="js-ajax-container">
 			<div class="js-ajax-content">
 
 				<?php kss_get_hero( 'single' ); ?>
 
-				<div class="layout layout--single">
-					<div class="layout__container">
-						<?php if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>
+				<div class="flow">
 
-							<?php if ( get_the_content() ) { ?>
-								<div class="frame">
-									<div class="frame__container">
-										<div class="frame__content">
-											<div class="content">
-												<?php the_content(); ?>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="layout__content">
-									<div class="content">
-									</div>
-								</div>
-							<?php } ?>
+					<?php
+					// Backdrop
+					kss_get_backdrop(); ?>
+								
+					<?php 
+					// Layout
+					kss_get_layout( 'default' ); ?>
+					
+					<?php
+					$post = get_previous_post( true );
+					if ( is_a( $post , 'WP_Post' ) ) { ?>
+						<div class="layout">
+							<div class="layout__container">
+								<div class="layout__body">
 
-						<?php } } ?>
-					</div>
+									<div class="content content--intro">
+										<h3 class="title">Gerelateerd nieuws</h3>
+										<p>Lees verder wat we hiervoor gedaan hebben.</p>
+									</div>
+
+								</div>
+								<div class="layout__body">
+
+									<?php 
+									setup_postdata( $post );
+									kss_get_news( 'item-large' );
+									wp_reset_postdata(); ?>
+
+								</div>
+							</div>
+						</div>
+					<?php } ?>
+
 				</div>
+				
 			</div>
+		</div>
 
 	</article>
 </main>

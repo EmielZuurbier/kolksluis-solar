@@ -112,8 +112,8 @@ export default class BackdropElement extends BaseElement {
 		let width = this.canvasWidth;
 		let offsetTop = this.canvasOffsetTop;
 
-		let mouseX = 0;
-		let mouseY = 0;
+		let mouseX = width / 2;
+		let mouseY = (window.innerHeight / 2) - offsetTop;
 
 		const createVerticalLines = gutter => {
 			let correction = (width % gutter) / 2;

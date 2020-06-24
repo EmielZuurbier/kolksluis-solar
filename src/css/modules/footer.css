@@ -1,5 +1,49 @@
 .footer {
-	display: block;
-	background-color: var(--color-light);
-	padding: 2.5em 0;
+	position: relative;
+}
+
+.footer__container {
+	grid-area: 1 / 2 / 2 / 3;
+	display: grid;
+	grid-template:
+		"logo" auto
+		"nav-1" auto
+		"nav-2" auto / 1fr;
+	grid-gap: 1.5em;
+	gap: 1.5em;
+	align-items: end;
+	background-color: var(--color-dark-alt);
+	padding: var(--content-padding);
+}
+
+.footer__logo {
+	grid-area: logo;
+	max-width: 20em;
+}
+
+.footer__nav--primary {
+	grid-area: nav-1;
+}
+
+.footer__nav--secundary {
+	grid-area: nav-2;
+}
+
+@media all and (min-width: 48em) {
+
+	.footer__container {
+		grid-template:
+			"logo logo" auto
+			"nav-1 nav-2" auto / 1fr 1fr;
+	}
+
+}
+
+@media all and (min-width: 64em) {
+
+	.footer__container {
+		grid-template:
+			"logo nav-1 nav-2" auto / 2fr 1fr 1fr;
+	}
+
 }

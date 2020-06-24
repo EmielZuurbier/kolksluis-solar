@@ -75,3 +75,42 @@
 	color: #ffffff;
 	margin: 0;
 }
+
+.kss-logo__text {
+	font-family: 'Ailerons';
+	font-size: 72px;
+	fill: #ffffff;
+}
+
+.kss-logo__word {
+
+}
+
+.kss-logo__panel {
+	fill: transparent;
+	stroke-width: 6;
+}
+
+.kss-logo__panel--one {
+	stroke: #FF9936;
+}
+
+.kss-logo__panel--two {
+	stroke: #E75761;
+}
+
+.kss-logo__panel--three {
+	stroke: #B01717;
+}
+
+.kss-logo__panel--four {
+	stroke: #5D28EA;
+}
+
+@media all and (min-width: 48em) {
+
+	.kss-logo {
+		margin: -12px -9px 0;
+	}
+
+}

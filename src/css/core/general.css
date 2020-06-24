@@ -44,17 +44,18 @@ body {
 img {
 	display: block;
 	max-width: 100%;
+	width: 100%;
 	height: auto;
-}
-
-a {
-	display: block;
-	text-decoration: none;
 }
 
 main {
 	display: grid;
 	grid-template: 
 		"main" 1fr / 1fr;
+	height: auto;
+}
+
+.panels {
+	width: 100%;
 	height: auto;
 }

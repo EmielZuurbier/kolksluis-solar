@@ -97,6 +97,11 @@ export default class CursorElement extends BaseElement {
 			this.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 		}
 
+		const hoverableElements = document.querySelectorAll(`
+			a[href],
+			button
+		`);
+
 		window.addEventListener('mousemove', ({ pageX, pageY }) => {
 			requestAnimationFrame(() => {
 				x = pageX - (this.offsetWidth / 2);
@@ -113,6 +118,15 @@ export default class CursorElement extends BaseElement {
 					y += deltaY;
 					updatePosition(x, y);
 				}
+			});
+		});
+
+		hoverableElements.forEach(element => {
+			element.addEventListener('mouseenter', event => {
+				this.hover = true;
+			});
+			element.addEventListener('mouseleave', event => {
+				this.hover = false;
 			});
 		});
 

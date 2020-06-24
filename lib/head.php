@@ -50,6 +50,24 @@ function disable_emojicons_tinymce( $plugins ) {
 }
 
 /**
+ * head_cookies
+ * 
+ * Scripts that will be output in the head 
+ * when the cookies have been accepted by the user.
+ * 
+ * @since   1.0
+ * @link    https://codex.wordpress.org/Function_Reference/wp_head
+ * @link    https://codex.wordpress.org/Plugin_API/Action_Reference/wp_head
+ */
+add_action( 'wp_head', 'head_cookies', 10 );
+function head_cookies() {
+
+	// Head cookies template.
+	kss_get_cookies( 'head' );
+
+}
+
+/**
  * head_javascript_active
  * 
  * Places javascript in the head which checks if 

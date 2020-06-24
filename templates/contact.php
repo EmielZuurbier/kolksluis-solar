@@ -7,7 +7,10 @@
 
 get_header();
 
-$contact = get_field( 'contact' );
+$contact 	= get_field( 'contact' );
+$phone		= $contact[ 'phone' ];
+$email		= $contact[ 'email' ];
+$map		= $contact[ 'address' ];
 ?>
 
 <main id="main" role="main">
@@ -28,42 +31,72 @@ $contact = get_field( 'contact' );
 
 					<section id="contact" class="layout layout--page">
 						<div class="layout__container">
-							<div class="layout__contact">
 
-								<?php kss_get_form( 'contact' ); ?>
+							
+							<div class="panel">
+								<div class="panel__content">
 
-								<div class="panel">
-									<div class="panel__content">
-										<div class="panel__body">
-											<h3>Contactgegevens</h3>
-											<address class="contact">
-												<ul class="contact__list">
-													<?php if ( $contact[ 'phone' ][ 'label' ] && $contact[ 'phone' ][ 'value' ] ) { ?>
-														<li class="contact__item">
-															<a class="contact__link" href="<?php echo $contact[ 'phone' ][ 'value' ]; ?>">
-																<i class="far fa-phone"></i>
-																<span><?php echo $contact[ 'phone' ][ 'label' ]; ?></span>
-															</a>
-														</li>
-													<?php } ?>
-													<?php if ( $contact[ 'email' ][ 'label' ] && $contact[ 'email' ][ 'value' ] ) { ?>
-														<li class="contact__item">
-															<a class="contact__link" href="<?php echo $contact[ 'email' ][ 'value' ]; ?>">
-																<i class="far fa-envelope"></i>
-																<span><?php echo $contact[ 'email' ][ 'label' ]; ?></span>
-															</a>
-														</li>
-													<?php } ?>
-													<li class="contact__item">
-														<p>
-															<?php echo $contact[ 'address' ][ 'street' ]; ?><br>
-															<?php echo $contact[ 'address' ][ 'postal_code' ]; ?><br>
-															<?php echo $contact[ 'address' ][ 'place' ]; ?>
-														</p>
-													</li>
-												</ul>
-											</address>
+									<div class="contact">
+										<div class="contact__form">
+											<div class="panel__body">
+												<h3>Laat een bericht voor ons achter</h3>
+												<?php kss_get_form( 'contact' ); ?>
+											</div>
 										</div>
+										<div class="contact__info">
+											<div class="panel__body">
+												<h3>Contactgegevens</h3>
+												<p>Neem contact met ons op.</p>
+												<address>
+
+													<?php
+													if ( $phone ) {
+														$phone_title 	= $phone[ 'title' ];
+														$phone_url 		= $phone[ 'url' ]; 
+														$phone_target 	= $phone['target'] ? $phone['target'] : '_self'; ?>
+
+														<a class="button" href="tel:<?php echo $phone_url; ?>" target="<?php echo $phone_target; ?>">
+															<span class="button__label"><?php echo $phone_title; ?></span>
+															<div class="button__icon">
+																<i class="fas fa-phone-alt"></i>
+															</div>
+														</a>
+													<?php } ?>
+
+													<?php
+													if ( $email ) { 
+														$email_title 	= $email[ 'title' ];
+														$email_url 		= $email[ 'url' ]; 
+														$email_target 	= $email['target'] ? $email['target'] : '_self'; ?>
+
+														<a class="button" href="mailto:<?php echo $email_url; ?>" target="<?php echo $email_target; ?>">
+															<span class="button__label"><?php echo $email_title; ?></span>
+															<div class="button__icon">
+																<i class="fas fa-envelope"></i>
+															</div>
+														</a>
+													
+													<?php } ?>
+
+													<?php 
+													if ( $map ) { 
+														$latitude 	= $map[ 'lat' ];
+														$longitude 	= $map[ 'lng' ];
+														$address 	= $map[ 'address' ]; ?>
+
+														<a class="button" href="https://www.google.nl/maps/@<?php echo $latitude; ?>,<?php echo $longitude; ?>,15z" target="_blank">
+															<span class="button__label"><?php echo $address; ?></span>
+															<div class="button__icon">
+																<i class="fas fa-location-arrow"></i>
+															</div>
+														</a>
+
+													<?php } ?>
+													
+												</address>
+											</div>
+										</div>
+									</div>
 									</div>
 								</div>
 

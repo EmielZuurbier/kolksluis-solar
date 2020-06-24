@@ -7,13 +7,22 @@
 	z-index: 0;
 }
 
-.backdrop::before {
+.backdrop::before,
+.backdrop::after {
 	content: "";
 	display: block;
 	position: absolute;
-	top: 0;
 	left: 0;
 	height: 20em;
 	width: 100%;
+}
+
+.backdrop::before {
+	top: 0;
 	background: linear-gradient(0deg, transparent, var(--color-dark));
+}
+
+.backdrop::after {
+	bottom: 0;
+	background: linear-gradient(180deg, transparent, var(--color-dark));
 }

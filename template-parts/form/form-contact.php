@@ -28,6 +28,9 @@ $redirect_url = kss_get_url_of_children_by_page_id( get_the_id() );
 		<div class="form__footer">
 			<button type="submit" class="button">
 				<span class="button__label">Verstuur</span>
+				<div class="button__icon">
+					<i class="fas fa-envelope"></i>
+				</div>
 			</button>
 		</div>
 		<input type="hidden" name="_wp_nonce" value="<?php echo wp_create_nonce( 'form_handler_nonce' ); ?>"/>

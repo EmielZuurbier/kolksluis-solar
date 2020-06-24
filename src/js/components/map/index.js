@@ -1,139 +1,11 @@
 import BaseElement from 'Classes/custom-elements/base-element.js';
 import { getRestData } from 'Utilities/rest.js';
 import { template } from './template.js';
+import { onSlotChange } from './events.js';
 import mapboxgl from 'mapbox-gl';
 
 // Create a template.
 template.render();
-
-// /**
-//  * Map element
-//  * 
-//  * @class
-//  * @extends	BaseElement
-//  */
-// export default class MapElement extends BaseElement {
-
-// 	/**
-// 	 * Attributes to trigger the attributeChangedCallback on.
-// 	 * 
-// 	 * @static
-// 	 * @get
-// 	 * @method	observedAttributes
-// 	 * @returns	{string[]}
-// 	 */
-// 	static get observedAttributes() {
-// 		return ['in-view'];
-// 	}
-
-// 	/**
-// 	 * @constructor
-// 	 */
-// 	constructor() {
-// 		super();
-		
-// 		const shadow = this.attachShadow({ mode: 'open' });
-// 		shadow.appendChild(template.clone());
-//     }
-
-//     /**
-// 	 * Gets and sets the in-view attribute.
-// 	 * @property
-// 	 */
-// 	get inView() {
-// 		return this.getAttribute('in-view');
-// 	}
-
-// 	set inView(value) {
-// 		if (value === true) {
-// 			this.setAttribute('in-view', '');
-// 		} else {
-// 			this.removeAttribute('in-view');
-// 		}
-// 	}
-
-// 	/**
-// 	 * Gets the map element from the Shadow DOM.
-// 	 * @property
-// 	 */
-// 	get map() {
-// 		return this.shadowRoot.querySelector('.map');
-// 	}
-
-// 	/**
-// 	 * Fires when an attribute has been changed.
-// 	 * 
-// 	 * @method	attributeChangedCallback
-// 	 * @param 	{string} attrName Name of attribute.
-// 	 * @param 	{*} oldValue Old value of attribute.
-// 	 * @param 	{*} newValue New value of attribute.
-// 	 */
-// 	attributeChangedCallback(attrName, oldValue, newValue) {
-
-//         switch(attrName) {
-//         	case 'in-view':
-// 				this.#getAccessToken();
-// 				break;
-//         }
-
-//     }
-
-// 	/**
-// 	 * Fires when the element has been connected.
-// 	 * 
-// 	 * @method	connectedCallback
-// 	 * @returns	{void}
-// 	 */
-// 	connectedCallback() {
-	
-// 		/**
-// 		 * Intersection Observer callback.
-// 		 * 
-// 		 * @param 	{IntersectionObserverEntry[]} entries 
-// 		 * @returns	{void}
-// 		 */
-// 		const onIntersection = (entries, observer) => {
-// 			for (const { target, isIntersecting } of entries) {
-// 				if (isIntersecting) {
-// 					this.inView = true;
-// 					observer.unobserve(target);
-// 				}
-// 			}
-// 		}
-
-// 		// Create instance of observer.
-// 		const observer = new IntersectionObserver(onIntersection, {
-// 			root: null,
-// 			rootMargin: '0px',
-// 			threshold: [0]
-// 		});
-
-// 		// Observer the current element.
-// 		observer.observe(this);
-
-// 	}
-
-// 	/**
-// 	 * Fires when the element has been disconnected.
-// 	 * 
-// 	 * @method	disconnectedCallback
-// 	 * @returns	{void}
-// 	 */
-// 	disconnectedCallback() {
-
-// 	}
-
-// 	/**
-// 	 * Fires when the element has been adopted in a new document.
-// 	 * 
-// 	 * @method	connectedCallback
-// 	 * @returns	{void}
-// 	 */
-// 	adoptedCallback() {
-
-// 	}
-
-// }
 
 /**
  * MapBox element
@@ -187,7 +59,8 @@ export default class MapBoxElement extends BaseElement {
 			container: this.map,
 			style: this.mapStyle,
 			center: this.center,
-			interactive: false,
+			scrollZoom: false,
+			dragPan: true,
 			zoom: 10
 		});
 
@@ -238,14 +111,14 @@ export default class MapBoxElement extends BaseElement {
 						0.6, '#602168',
 						0.8, '#4d2ba8'
 					],
-					'line-width': 6,
+					'line-width': 2,
 					'line-opacity': 1
 				}
 			});
 
 			map.flyTo({
 				center: this.center,
-				zoom: 15,
+				zoom: this.zoom,
 				speed: 0.5
 			});
 
@@ -274,7 +147,16 @@ export default class MapBoxElement extends BaseElement {
 		// Create the Shadow DOM.
 		const shadow = this.attachShadow({ mode: 'open' });
 		shadow.appendChild(template.clone());
+		shadow.addEventListener('slotchange', onSlotChange.bind(this));
 		
+	}
+
+	/**
+	 * Gets the 
+	 */
+	get controls() {
+		const slots = [...this.shadowRoot.querySelectorAll('slot')];
+		return slots.flatMap(slot => slot.assignedElements());
 	}
 
 	/**
@@ -338,11 +220,16 @@ export default class MapBoxElement extends BaseElement {
 	 * @property
 	 */
 	get center() {
-		const { lng, lat } = JSON.parse(this.getAttribute('center'));
-		return new mapboxgl.LngLat(
-			parseFloat(lng),
-			parseFloat(lat)
-		);
+		try {
+			const { lng, lat } = JSON.parse(this.getAttribute('center'));
+			return new mapboxgl.LngLat(
+				parseFloat(lng),
+				parseFloat(lat)
+			);
+		} catch(error) {
+			console.error('No center object has been set');
+			return null;
+		}
 	}
 
 	set center(value) {
@@ -677,6 +564,13 @@ export default class MapBoxElement extends BaseElement {
 			case 'in-view':
 				this.#initMap();
 				break;
+			case 'zoom':
+				if (this.#mapboxInstance !== null) {
+					const value = Number(newValue);
+					this.#mapboxInstance.zoomTo(value, {
+						duration: 1000
+					});
+				}
 		}
 
 	}
@@ -720,6 +614,15 @@ export default class MapBoxElement extends BaseElement {
 	 */
 	adoptedCallback() {
 
+	}
+
+	toCenter(center) {
+		this.zoom = 15;
+		this.#mapboxInstance.flyTo({
+			center,
+			zoom: 15,
+			speed: 0.5
+		});
 	}
 
 }

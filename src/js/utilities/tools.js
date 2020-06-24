@@ -93,42 +93,6 @@ export const convertKeysOfObject = (object, converterCallback) => {
 };
 
 /**
- * Convert a timestamp into the amount of seconds.
- * 
- * @function	timeToSeconds
- * @param 		{number} date A date timestamp. 
- * @returns		{number}
- */
-export const timeToSeconds = date => Math.round(date / 1000);
-
-/**
- * Convert a timestamp into the amount of minutes.
- * 
- * @function	timeToMinutes
- * @param 		{number} date A date timestamp. 
- * @returns		{number}
- */
-export const timeToMinutes = date => Math.round(timeToSeconds(date) / 60);
-
-/**
- * Convert a timestamp into the amount of hours.
- * 
- * @function	timeToHours
- * @param 		{number} date A date timestamp. 
- * @returns		{number}
- */
-export const timeToHours = date => Math.round(timeToMinutes(date) / 60);
-
-/**
- * Convert a timestamp into the amount of days.
- * 
- * @function	timeToDays
- * @param 		{number} date A date timestamp. 
- * @returns		{number}
- */
-export const timeToDays = date => Math.round(timeToHours(date) / 24);
-
-/**
  * Generates a random number between a min and a max value.
  * 
  * @function	getRandomInt
@@ -166,60 +130,6 @@ export const numberToRadius = number => number * Math.PI / 180;
  * @returns		{number} Number in degree.
  */
 export const numberToDegree = number => number * 180 / Math.PI;
-
-/**
- * Convert a Fahrenheit temperature to Celcius.
- * 
- * @function	fahrenheitToCelcius
- * @param		{number} temp The temperature value to convert.
- * @returns		{number} The converted value.
- */
-export const fahrenheitToCelcius = temp => (temp - 32) / 1.8;
-
-/**
- * Convert a Fahrenheit temperature to Kelvin.
- * 
- * @function	fahrenheitToKelvin
- * @param		{number} temp The temperature value to convert.
- * @returns		{number} The converted value.
- */
-export const fahrenheitToKelvin = temp => fahrenheitToCelcius(temp) + 273.15;
-
-/**
- * Convert a Celcius temperature to Fahrenheit.
- * 
- * @function	celciusToFahrenheit
- * @param		{number} temp The temperature value to convert.
- * @returns		{number} The converted value.
- */
-export const celciusToFahrenheit = temp => (temp * 1.8) + 32;
-
-/**
- * Convert a Celcius temperature to Kelvin.
- * 
- * @function	celciusToKelvin
- * @param		{number} temp The temperature value to convert.
- * @returns		{number} The converted value.
- */
-export const celciusToKelvin = temp => temp + 273.15;
-
-/**
- * Convert a Kelvin temperature to Celcius.
- * 
- * @function	kelvinToCelcius
- * @param		{number} temp The temperature value to convert.
- * @returns		{number} The converted value.
- */
-export const kelvinToCelcius = temp => temp - 273.15;
-
-/**
- * Convert a Kelvin temperature to Fahrenheit.
- * 
- * @function	kelvinToFahrenheit
- * @param		{number} temp The temperature value to convert.
- * @returns		{number} The converted value.
- */
-export const kelvinToFahrenheit = temp => celciusToFahrenheit(kelvinToCelcius(temp));
 
 /**
  * Checks if a number is between two numbers. 

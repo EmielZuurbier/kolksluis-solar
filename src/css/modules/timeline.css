@@ -1,0 +1,146 @@
+.timeline {
+	display: grid;
+	grid-template:
+		"bar calendar" 1fr / 1.5em 1fr;
+}
+
+.timeline--front-page {
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 1.5em 1fr;
+	max-width: 52em;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.timeline__bar {
+	grid-area: bar;
+	display: grid;
+	grid-template-rows: 1.5em 1fr 1.5em;
+	grid-template-columns: 1fr;
+	justify-content: center;
+	padding: 0.375em 0;
+	z-index: 1;
+}
+
+.timeline--front-page .timeline__bar {
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+.timeline__bar::before,
+.timeline__bar::after {
+	content: "";
+	width: 1.5em;
+	height: 1.5em;
+    border-radius: 50%;
+    border: 0.625em solid var(--color-light);
+    box-shadow: var(--panel-shadow);
+    z-index: 1;
+}
+
+.timeline__bar::before {
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.timeline__bar::after {
+	grid-area: 3 / 1 / 4 / 2;
+	border-color: #2d2d2d;
+}
+
+.timeline__line {
+	grid-area: 1 / 1 / 5 / 2;
+	width: 0.25em;
+	background: var(--gradient-accent-decay);
+	margin: 0 auto;
+}
+
+.timeline__calendar {
+	grid-area: 1 / 1 / 2 / 3;
+	padding: 2.5em 0;
+	z-index: 2;
+}
+
+.timeline--front-page .timeline__calendar {
+	grid-area: 1 / 1 / 2 / 4;
+}
+
+.timeline__group {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1.5em 1fr;
+	grid-gap: 1em;
+	gap: 1em;
+	align-items: baseline;
+	margin: 3em 0;
+}
+
+.timeline__group::before {
+	grid-area: 1 / 1 / 2 / 2;
+	content: "";
+	width: 1.5em;
+	height: 1.5em;
+    border-radius: 50%;
+    border: 0.625em solid var(--color-light);
+	box-shadow: var(--panel-shadow);
+	transform: translate(0, 0.5em);
+    z-index: 1;
+}
+
+.timeline__content {
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+.timeline__group:first-child {
+	margin-top: 0;
+}
+
+.timeline__group:last-child {
+	margin-bottom: 0;
+}
+
+.timeline__header {
+	margin: 0 0 1.5em;
+}
+
+.timeline__posts {
+	display: grid;
+	grid-auto-rows: 1fr;
+	grid-template-columns: 1fr;
+	grid-gap: 1.5em;
+	gap: 1.5em;
+}
+
+.timeline__date {
+	padding: 2em;
+	width: 100%;
+	border-left: 12px solid var(--color-accent);
+}
+
+@media all and (min-width: 48em) {
+
+
+	.timeline__bar {
+		grid-template-rows: 1.5em 1fr 1.5em 3em;
+	}
+
+	.timeline__posts {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.timeline__calendar {
+		padding: 5em 0;
+	}
+
+	.timeline__group {
+		grid-gap: 3em;
+		gap: 3em;
+	}
+
+}
+
+@media all and (min-width: 64em) {
+
+	.timeline__posts {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+}

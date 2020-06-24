@@ -20,19 +20,11 @@
 		
 	</head>
 	<body <?php body_class(); ?>>
-	
-		<?php 
-		// Body template of cookie
-		get_template_part( './inc/cookies/cookies', 'body' ); ?>
 
 		<?php 
 		// Splash screen
-		// get_template_part( './inc/loader/splash' ); ?>
-
-		<?php
-		// Canvas background
-		// get_template_part( './inc/background/background', 'video' ); ?>
+		wp_body_open(); ?>
 
 		<?php
 		// Banner
-		kss_get_banner();
+		kss_get_banner(); ?>

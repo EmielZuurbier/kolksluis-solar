@@ -62,7 +62,7 @@ export default class LazyElement extends HTMLElement {
 	 * @returns	{String[]}
 	 */
 	static get observedAttributes() {
-		return ['root', 'root-margin', 'threshold'];
+		return [];
 	}
 
 	/**
@@ -146,18 +146,6 @@ export default class LazyElement extends HTMLElement {
 	 */
 	attributeChangedCallback(attrName, oldValue, newValue) {
 
-		// Rewrite and create
-		switch(attrName) {
-			case 'root':
-			case 'root-margin':
-			case 'threshold':
-
-				// Create an observer and observe the targets.
-				this.#setupObserver();
-				break;
-
-		}
-
 	}
 
 	/**
@@ -175,7 +163,7 @@ export default class LazyElement extends HTMLElement {
 
 		// Add a default root.
 		if (this.root === null) {
-			this.root = 'null';
+			this.root = null;
 		}
 
 		// Add a default root margin

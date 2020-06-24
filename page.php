@@ -19,21 +19,10 @@ get_header();
 					<?php
 					// Backdrop
 					kss_get_backdrop(); ?>
-
-					<div class="layout layout--page">
-						<div class="layout__container">
-							<?php if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>
-
-								<?php if ( get_the_content() ) { ?>
-									<div class="layout__content">
-										<div class="content">
-										</div>
-									</div>
-								<?php } ?>
-
-							<?php } } ?>
-						</div>
-					</div>
+								
+					<?php 
+					// Layout
+					kss_get_layout( 'default' ); ?>
 
 				</div>
 				

@@ -18,7 +18,7 @@ add_action( 'rest_api_init', 'register_mapbox_geo_json' );
 function register_mapbox_geo_json() {
 
 	// Register new route to get data from
-	register_rest_route( '/kss/v1', 
+	register_rest_route( 'kss/v1', 
 		'/geojson/', 
 		array(
 			'methods'		=> array( 'GET' ),

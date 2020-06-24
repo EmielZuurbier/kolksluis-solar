@@ -8,26 +8,23 @@ h6 {
 	margin: 2rem 0 1rem;
 }
 
-h1,
-h2 {
-	font-family: var(--font-ailerons);
-}
-
 h1 {
+	font-family: var(--font-ailerons);
+	font-size: 2em;
 	font-weight: 400;
-	line-height: 1;
-	margin: 2.5rem 0 1.5rem;
+	line-height: 1.6;
+	margin: 2.5rem 0 1.5rem -0.375rem;
 }
 
 h2 {
-	font-size: 2em;
+	font-size: 1.5em;
 	margin: 3rem 0 1.5rem;
-	text-indent: -0.375rem;
+    line-height: 1.6;
 }
 
 h3 {
 	font-size: 1.25em;
-	font-weight: 400;
+	font-weight: 300;
 	margin: 2rem 0 1.5rem;
 }
 
@@ -67,15 +64,25 @@ h6:last-child {
 
 p {
 	font-size: 0.875em;
-	font-weight: 300;
+	font-weight: 400;
 	font-style: normal;
-	line-height: 1.6;
+	line-height: 2;
 	margin: 1rem 0;
 	letter-spacing: 1px;
 }
 
+a {
+	display: block;
+	text-decoration: none;
+}
+
 p > a {
 	display: inline;
+	position: relative;
+	text-decoration: underline;
+	color: currentColor;
+	transition: color var(--duration-fast) var(--easing);
+	z-index: 1;
 }
 
 ul {
@@ -91,38 +98,42 @@ ol {
 ul > li {
 	font-size: 0.875em;
 	font-weight: 400;
-	line-height: 1.5;
+	line-height: 2;
 }
 
 ol > li {
 	font-size: 0.875em;
 	font-weight: 400;
-	line-height: 1.5;
+	line-height: 2;
 }
 
 ul > li > a {
 	display: inline;
+	color: var(--color-light);
+	transition: color var(--duration-fast) var(--easing);
 }
 
 ul > li > a:hover,
 ul > li > a:focus {
-
+	color: var(--color-sun);
 }
 
 ol > li > a {
 	display: inline;
+	color: var(--color-light);
+	transition: color var(--duration-fast) var(--easing);
 }
 
 ol > li > a:hover,
 ol > li > a:focus {
-
+	color: var(--color-sun);
 }
 
 q {
 	font-size: 0.875em;
-	font-weight: 400;
+	font-weight: 300;
 	font-style: normal;
-	line-height: 1.5;
+	line-height: 1.6;
 	margin: 1rem 0;
 	quotes: "“" "”" "‘" "’";
 }
@@ -130,16 +141,28 @@ q {
 blockquote {
 	display: block;
 	quotes: "“" "”" "‘" "’";
+	background-color: var(--color-light);
+    color: var(--color-dark-alt);
+    padding: 1.5em;
+    border-left: 12px solid var(--color-sun);
+}
+
+blockquote p {
+	display: inline;
+	font-style: italic;
+	text-shadow: none;
 }
 
 q::before,
 blockquote::before {
 	content: open-quote;
+	display: inline;
 }
 
 q::after,
 blockquote::after {
 	content: close-quote;
+	display: inline;
 }
 
 p:first-child,
@@ -159,11 +182,16 @@ blockquote:last-child {
 }
 
 strong {
-	font-weight: 400;
+	font-weight: 700;
 }
 
 em {
 	font-style: normal;
+	display: inline-block;
+	padding: 0.25em 0.75em;
+	color: var(--color-dark-alt);
+	background-color: var(--color-light);
+	margin: 2px;
 }
 
 mark {
@@ -182,12 +210,45 @@ sub {
 }
 
 time {
-	font-weight: 600;
+	font-weight: 700;
 	line-height: 1.6;
+	display: inline-block;
+	padding: 0.25em 0.75em;
+	color: var(--color-dark-alt);
+	background-color: var(--color-light);
+	margin: 2px;
+}
+
+.date {
+	font-size: 0.875em;
+	font-weight: 400;
+	padding: 1.5rem;
+    width: 100%;
+	border-left: 12px solid var(--color-accent);
+	margin: 0;
 }
 
 .title {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
 
+.title--center {
+	align-items: center;
+}
+
+.title::after {
+	content: "";
+	width: clamp(6em, 10vw, 10em);
+	height: 2px;
+	order: 1;
+	background: var(--gradient-accent-tilted);
+	margin: 1.5rem 0 0;
+}
+
+.title span {
+	order: 0;
 }
 
 .title--hero {
@@ -211,5 +272,29 @@ time {
 }
 
 .happy {
-	color: greenyellow;
+	color: var(--color-happy);
+}
+
+@media all and (min-width: 32em) {
+
+}
+
+@media all and (min-width: 48em) {
+	
+}
+
+@media all and (min-width: 64em) {
+
+	/* p,
+	q,
+	ul > li,
+	ol > li {
+		line-height: 1.6;
+		font-size: 1em;
+	} */
+	
+}
+
+@media all and (min-width: 80em) {
+	
 }

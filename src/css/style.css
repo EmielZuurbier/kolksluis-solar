@@ -34,5 +34,10 @@
 @import "./modules/story.css";			/* Story */
 @import "./modules/details.css";		/* Details */
 @import "./modules/isometric.css";		/* Isometric */
+@import "./modules/slider.css";			/* Slider */
+@import "./modules/link-block.css";		/* Link Block */
+@import "./modules/quick-nav.css";		/* Quick Nav */
+@import "./modules/timeline.css";		/* Timeline */
+@import "./modules/cookies.css";			/* Cookie */
 
 @import "./plugins/gforms.css";			/* Gravity Forms */
