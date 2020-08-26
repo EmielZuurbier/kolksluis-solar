@@ -23,6 +23,13 @@ export default class MapBoxElement extends BaseElement {
 	/**
 	 * @private
 	 */
+	get #mapContainerWidth() {
+		return this.map.offsetWidth;
+	}
+
+	/**
+	 * @private
+	 */
 	#observeMap = () => {
 
 		/**
@@ -52,6 +59,20 @@ export default class MapBoxElement extends BaseElement {
 
 	}
 
+	#observeContainer = () => {
+
+		const onResize = () => {
+			if (this.#mapboxInstance) {
+				this.#mapboxInstance.resize()
+			}
+		}
+
+		const observer = new ResizeObserver(onResize)
+
+		observer.observe(this);
+
+	}
+
 	#initMap = () => {
 
 		// Create the map.
@@ -76,7 +97,7 @@ export default class MapBoxElement extends BaseElement {
 			map.addSource('kolksluis-solar', {
 				"type": "geojson",
 				"lineMetrics": true,
-				"data": wp.rest + 'kss/v1/geojson'
+				"data": `${wp.rest}kss/v1/geojson`
 			});
 
 			// Add polygon layer.
@@ -591,6 +612,7 @@ export default class MapBoxElement extends BaseElement {
 		mapboxgl.accessToken = this.accessToken;
 
 		this.#observeMap();
+		this.#observeContainer();
 
 	}
 

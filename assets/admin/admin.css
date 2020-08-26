@@ -25,3 +25,25 @@
 	border-top: none;
 	border-left: #EEEEEE solid 1px;
 }
+
+.acf-contact-grid > .acf-input > .acf-fields {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.acf-contact-grid > .acf-input > .acf-fields .acf-contact-grid-street {
+	flex: 1 0 15em;
+}
+
+.acf-contact-grid > .acf-input > .acf-fields .acf-contact-grid-number {
+	flex: 1 1 10em;
+	max-width: 15em;
+}
+
+.acf-contact-grid > .acf-input > .acf-fields .acf-contact-grid-postal-code {
+	flex: 1 0 15em;
+}
+
+.acf-contact-grid > .acf-input > .acf-fields .acf-contact-grid-city {
+	flex: 1 0 15em;
+}

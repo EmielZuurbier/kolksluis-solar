@@ -19,8 +19,9 @@
 
 			<?php kss_get_navigation( 'main' ); ?>
 
-			<kss-menu class="banner__sub-menu js-menu" id="menu">
-				<div class="banner__sub-menu-inner">
+			<kss-menu class="banner__side-menu js-menu" id="menu">
+				<div class="banner__side-menu-inner">
+					<?php kss_get_navigation( 'main-side' ); ?>
 					<?php kss_get_navigation( 'side' ); ?>
 				</div>
 			</kss-menu>

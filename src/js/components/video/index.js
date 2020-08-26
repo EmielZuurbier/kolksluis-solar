@@ -33,28 +33,50 @@ export default class VideoElement extends BaseElement {
 		const shadow = this.attachShadow({mode: 'open'});
 		shadow.appendChild(template.clone());
 		shadow.addEventListener('slotchange', onSlotChange.bind(this));
+
+		this.isSeeking = false;
 	}
 
+	/**
+	 * Gets the video element that has been assigned to the slot.
+	 * @property
+	 */
 	get videoElement() {
 		const slot = this.shadowRoot.querySelector('slot[name="video"]');
 		return slot.assignedElements()[0];
 	}
 
+	/**
+	 * Gets the play element that has been assigned to the slot.
+	 * @property
+	 */
 	get playElement() {
 		const slot = this.shadowRoot.querySelector('slot[name="play"]');
 		return slot.assignedElements()[0];
 	}
 
+	/**
+	 * Gets the pause element that has been assigned to the slot.
+	 * @property
+	 */
 	get pauseElement() {
 		const slot = this.shadowRoot.querySelector('slot[name="pause"]');
 		return slot.assignedElements()[0];
 	}
 
+	/**
+	 * Gets the video element that has been assigned to the slot.
+	 * @property
+	 */
 	get muteElement() {
 		const slot = this.shadowRoot.querySelector('slot[name="mute"]');
 		return slot.assignedElements()[0];
 	}
 
+	/**
+	 * Gets the video element that has been assigned to the slot.
+	 * @property
+	 */
 	get seekerElement() {
 		const slot = this.shadowRoot.querySelector('slot[name="seeker"]');
 		return slot.assignedElements()[0];

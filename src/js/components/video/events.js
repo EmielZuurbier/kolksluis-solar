@@ -18,15 +18,21 @@ export const onSlotChange = function onSlotChange({ target }) {
 					this.pauseElement.classList.add('button--active');
 				});
 				element.addEventListener('timeupdate', event => {
-					this.seekerElement.value = element.currentTime;
+					if (this.isSeeking === false) {
+						this.seekerElement.value = element.currentTime;
+					}
 				});
 				element.addEventListener('ended', event => {
 					this.seekerElement.value = 0;
 				});
 				break;
 			case 'seeker':
+				element.addEventListener('input', ({ target }) => {
+					this.isSeeking = true;
+				});
 				element.addEventListener('change', ({ target }) => {
 					this.videoElement.currentTime = target.value;
+					this.isSeeking = false;
 				});
 				break;
 			case 'play':

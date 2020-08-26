@@ -1,16 +1,16 @@
 <?php
 /**
- * navigation-side.php
+ * navigation-main-side.php
  */
 
 // Create arguments for navigation
 $nav_menu_args = array(
-    'theme_location'        => 'menu-side',
+    'theme_location'        => 'menu-main',
     'container'             => 'nav',
-    'container_class'       => 'navigation-side',
+    'container_class'       => 'navigation-side-main',
     'menu_class'            => 'side-menu',
-    'menu_id'               => 'side-menu',
-    'depth'                 => 2,
+    'menu_id'               => 'side-main-menu',
+    'depth'                 => 1,
     'walker'                => new KSS_Walker_Side_Nav_Menu()
 );
 

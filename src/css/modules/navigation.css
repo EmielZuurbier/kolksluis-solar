@@ -1,16 +1,27 @@
-.nav {
-	--nav-padding: 1em;
-	padding: var(--nav-padding);
+.navigation-main {
+	display: none;
 }
 
-.nav.nav--front-page {
-	height: 100%;
+.navigation-side-main {
+	display: block;
+}
+
+.navigation-side-main + .navigation-side {
+	border-top: 1px solid var(--color-light-alt);
 }
 
 @media all and (min-width: 48em) {
 
-	.nav {
-		--nav-padding: 1.5em;
+	.navigation-main {
+		display: flex;
+	}
+
+	.navigation-side-main {
+		display: none;
+	}
+	
+	.navigation-side-main + .navigation-side {
+		border-top: 0;
 	}
 
 }

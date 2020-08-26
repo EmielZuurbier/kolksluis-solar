@@ -7,7 +7,7 @@
 $nav_menu_args = array(
     'theme_location'        => 'menu-main',
     'container'             => 'nav',
-    'container_class'       => 'banner__menu',
+    'container_class'       => 'banner__menu navigation-main',
     'menu_class'            => 'menu menu--banner',
     'menu_id'               => 'main-menu',
     'depth'                 => 1,

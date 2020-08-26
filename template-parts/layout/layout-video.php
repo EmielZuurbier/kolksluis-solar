@@ -45,8 +45,12 @@ $video_external 	= $video[ 'video_external' ];
 					</div>
 				</div>
 			<?php } else if ( $video_source === 'external' ) { ?>
-				<div class="iframe-container">
-					<?php echo $video_external; ?>
+				<div class="panel">
+					<div class="panel__content">
+						<div class="iframe-container">
+							<?php echo $video_external; ?>
+						</div>
+					</div>
 				</div>
 			<?php } ?>
 		</div>

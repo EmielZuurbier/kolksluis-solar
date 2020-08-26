@@ -296,7 +296,7 @@ button[type="reset"]:active {
 }
 
 .form__group[focus] .form__label {
-	transform: translate3d(0, -100%, 0) scale(0.75);
+	transform: translate3d(0, -75%, 0) scale(0.75);
 }
 
 .form__footer {

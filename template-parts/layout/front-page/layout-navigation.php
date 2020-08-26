@@ -6,7 +6,7 @@
 $navigation_items = 'navigation_items';
 ?>
 
-<section class="layout layout--banner">
+<section class="layout layout--navigation">
 	<div class="layout__container">
 		<nav class="panel">
 

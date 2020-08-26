@@ -98,18 +98,29 @@ function enqueue_theme_scripts() {
 	// wp_enqueue_script( 'webcomponents' );
 
 	/**
+	 * reCaptcha script.
+	 */
+	wp_register_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js?render=6Lcr86oZAAAAAOcnk6OExk1Mp8lT7RpB58891L-W', null, false, true );
+	if ( is_page_template( 'templates/contact.php' ) ) {
+		wp_enqueue_script( 'recaptcha' );
+	}
+
+	// Add local WP variables.
+	$wp_data = json_encode(array(
+		'ajax' 		=> admin_url( 'admin-ajax.php' ),
+		'theme' 	=> $template_dir,
+		'rest'		=> esc_url( get_rest_url() ),
+		'nonce'		=> wp_create_nonce( 'wp_rest' )
+	));
+
+	/**
 	 * Script
 	 * 
 	 * This file includes the general script of handling
 	 * interactions and DOM modifications.
 	 */
 	wp_register_script( 'script', $template_dir . '/dist/js/script.js', null, false, true );
-	wp_localize_script( 'script', 'wp', array(
-		'ajax' 			=> admin_url( 'admin-ajax.php' ),
-		'theme' 		=> $template_dir,
-		'rest'			=> esc_url( get_rest_url() ),
-		'nonce'			=> wp_create_nonce( 'wp_rest' )
-	) );
+	wp_add_inline_script( 'script', "window.wp = {$wp_data}" );
 	wp_enqueue_script( 'script' );
 
 }
@@ -148,7 +159,7 @@ function custom_script_attributes( $tag, $handle, $src ) {
 
 	// Add scripts to a handles array to provide them with an extra attribute.
 	$async_handles = array();
-	$defer_handles = array( 'script' );
+	$defer_handles = array();
 
 	// Script that load async
 	if ( in_array( $handle, $async_handles ) ) {

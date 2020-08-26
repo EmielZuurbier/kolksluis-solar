@@ -104,6 +104,9 @@ export default class BackdropElement extends BaseElement {
 		const lineOpacity = 0.5;
 		const diamondColor = '#222222';
 		const diamonOpacity = 1;
+
+		const gutterYSize = 200;
+		const gutterXSize = 150;
 		
 		this.canvasHeight = this.offsetHeight;
 		this.canvasWidth = this.offsetWidth;
@@ -183,9 +186,9 @@ export default class BackdropElement extends BaseElement {
 
 		const renderCallback = () => {
 			ctx.clearRect(0, 0, width, height);
-			createVerticalLines(150);
-			createHorizontalLines(200);
-			createDiamonds(150, 200);
+			createVerticalLines(gutterXSize);
+			createHorizontalLines(gutterYSize);
+			createDiamonds(gutterXSize, gutterYSize);
 			createGlare(mouseX, mouseY, 350);
 		};
 

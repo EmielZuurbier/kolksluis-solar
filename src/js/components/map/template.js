@@ -63,25 +63,25 @@ export const template = new Template(() => /*template*/`
 
 		.controls {
 			grid-area: 4 / 2 / 6 / 3;
-			display: grid;
-			grid-template:
-				"center" auto
-				"zoom-in" auto
-				"zoom-out" auto / 1fr;
-			grid-gap: 2px;
-			gap: 2px;
+			display: flex;
+			flex-wrap: wrap;
+			margin: 0 -1px;
+		}
+
+		.controls > * {
+			margin: 0 1px 2px;
 		}
 
 		.controls-center {
-			grid-area: center;
+			flex: 5 1 auto;
 		}
 
 		.controls-zoom-in {
-			grid-area: zoom-in;
+			flex: 1 0 10em;
 		}
 
 		.controls-zoom-out {
-			grid-area: zoom-out;
+			flex: 1 0 10em;
 		}
 
 		:host([loaded]) .map {
@@ -96,25 +96,6 @@ export const template = new Template(() => /*template*/`
 		::slotted(.button) {
 			width: 100%;
 			margin: 0;
-		}
-
-		@media all and (min-width: 48em) {
-
-			.controls {
-				grid-template:
-					"center center" auto
-					"zoom-in zoom-out" auto / 1fr 1fr;
-			}
-
-		}
-
-		@media all and (min-width: 64em) {
-
-			.controls {
-				grid-template:
-					"center zoom-in zoom-out" 1fr / 1fr auto auto;
-			}
-
 		}
 
 	</style>

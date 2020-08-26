@@ -31,7 +31,7 @@ $intro		= $head[ 'intro' ];
 					<kss-setup class="details">
 
 						<div class="details__image" slot="image">
-							<?php kss_get_panel(); ?>
+							<?php kss_get_panel( '2' ); ?>
 						</div>
 
 						<?php if ( have_rows( 'details' ) ) { while ( have_rows( 'details' ) ) { the_row(); ?>
