@@ -1,8 +1,7 @@
 <?php
 /**
- * Theme:
- * Template:			functions.php
- * Description:			Overview of all theme functionality
+ * functions.php
+ * Overview of all theme functionality
  * 
  * @package 	WordPress
  * @subpackage	Control Theme Template
@@ -42,7 +41,8 @@ $templates = [
 	'lib/theme.php',
 	'lib/shortcodes.php',
 	'lib/widgets.php',
-	'lib/mapbox.php'
+	'lib/mapbox.php',
+	'lib/acf.php'
 ];
 
 /**
