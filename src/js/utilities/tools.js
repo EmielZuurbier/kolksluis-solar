@@ -242,10 +242,11 @@ export const stringContainsUpperCase = string => string.toLowerCase() !== string
  */
 export const generateAlphaNumericString = (length = 10) => {
 	const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+	const setLength = charset.length;
 	let value = '';
 	let i = 0;
 	for (i; i < length; i++) {
-		value += charset.charAt(Math.floor(Math.random() * n));
+		value += charset.charAt(Math.floor(Math.random() * setLength));
 	}
 	return value;
 };
