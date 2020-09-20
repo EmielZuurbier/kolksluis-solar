@@ -2,6 +2,7 @@
 .cache
 dist
 node_modules
+config
 
 .DS_Store
 .env

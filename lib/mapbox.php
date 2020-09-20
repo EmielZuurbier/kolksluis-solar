@@ -3,8 +3,6 @@
  * mapbox.php 
  */
 
-const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibWlsb3NhdXJ1cyIsImEiOiJja2FzM2NobmEwbGRiMnFxZm1rNG0ydDFnIn0.1chjWNs_Eom2MgUF-nfS3w';
-
 /**
  * register_mapbox_geo_json
  * 

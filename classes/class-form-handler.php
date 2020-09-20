@@ -22,11 +22,6 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 	class Form_Handler {
 
 		/**
-		 * Key for validating recaptcha.
-		 */
-		private $recaptcha_secret = '6Lf4ocgZAAAAACEe92x5dOpLlHvayhubUVvJdenk';
-
-		/**
 		 * Nonce for form handling.
 		 */
 		private $nonce = 'form_handler_nonce';
@@ -154,8 +149,14 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 
 			}
 
+			// Get the config with the secret.
+			$config_url = get_rest_url( null, '/kss/v1/config' );
+			$config = wp_remote_get( $config_url );
+			$recaptcha_secret = $config[ 'RECAPTCHA_SECRET' ];
+
+			// Verify the recaptcha with the secret.
 			$recaptcha_verify_url = 'https://www.google.com/recaptcha/api/siteverify';
-			$recaptcha_verify_url .= '?secret=' . urlencode( $this->recaptcha_secret );
+			$recaptcha_verify_url .= '?secret=' . urlencode( $recaptcha_secret );
 			$recaptcha_verify_url .= '&response=' . urlencode( $recaptcha );
 
 			$recaptcha_response = wp_remote_get( $recaptcha_verify_url );

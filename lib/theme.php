@@ -21,6 +21,11 @@ require_once $template_dir . '/classes/class-form-handler.php';
 require_once $template_dir . '/classes/class-cookie.php';
 
 /**
+ * Include the Theme_Rest_Api class.
+ */
+require_once $template_dir . '/classes/class-rest-api.php';
+
+/**
  * setup_form_handlers
  * 
  * Create a new handler for the forms in the theme.
@@ -53,6 +58,23 @@ function setup_cookie_handlers() {
 	$cookies = new Theme_Cookies();
 	$cookies->add_customizer_actions();
 	$cookies->add_rest_endpoints();
+
+}
+
+/**
+ * setup_rest_api
+ * 
+ * Creates new REST endpoints to fetch data from.
+ * 
+ * @since	1.0
+ * @link	https://developer.wordpress.org/reference/hooks/init/
+ */
+add_action( 'init', 'setup_rest_api' );
+function setup_rest_api() {
+
+	$rest = new Theme_Rest_Api();
+	$rest->add_post_taxonomies_and_terms_to_posts();
+	$rest->register_config_endpoint()
 
 }
 

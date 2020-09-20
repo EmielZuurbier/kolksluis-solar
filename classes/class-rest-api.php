@@ -14,9 +14,6 @@ if ( ! class_exists( 'Theme_Rest_Api' ) ) {
                 add_filter( 'rest_authentication_errors', array( $this, 'restrict_rest_response' ) );   
             }
 
-            $this->add_post_thumbnails_to_posts();
-            $this->add_post_taxonomies_and_terms_to_posts();
-
         }
 
         /**
@@ -36,6 +33,35 @@ if ( ! class_exists( 'Theme_Rest_Api' ) ) {
                 return new WP_Error( 'rest_not_logged_in', 'You are not currently logged in.', array( 'status' => 401 ) );
             }
             return $result;
+        }
+
+        public function register_config_endpoint() {
+
+
+            // Register new route to get data from
+            register_rest_route( 'kss/v1', 
+                '/config/', 
+                array(
+                    'methods'		=> array( 'GET' ),
+                    'callback'		=> 'get_config'
+                ) 
+            );
+
+            /**
+             * get_config
+             * 
+             * Returns the config with tokens in JSON.
+             * 
+             * @param	WP_REST_Request $request
+             * @return	JSON
+             */
+            function get_config( WP_REST_Request $request ) {
+                $template_url = get_template_directory_uri();
+                $data = file_get_contents( $template_url . '/config/config.json' );
+                $response = new WP_REST_Response( json_decode( $data ) );
+                return $response;
+            }
+
         }
 
         /**
