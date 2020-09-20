@@ -1,0 +1,10 @@
+{
+	"author": "Emiel Zuurbier",
+	"name": "Kolksluis Solar",
+	"short_name": "KS",
+	"description": "Zonneweide en energie",
+	"start_url": "/",
+	"background_color": "#111",
+	"theme_color": "#fff",
+	"display": "fullscreen"
+}

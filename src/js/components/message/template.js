@@ -11,6 +11,7 @@ export const template = new Template(() => /*template*/`
 			all: initial;
 			position: relative;
 			font-size: 100%;
+			font-family: inherit;
 			-webkit-font-smoothing: antialiased;
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-text-size-adjust: 100%;
@@ -21,16 +22,42 @@ export const template = new Template(() => /*template*/`
 			padding: 0;
 		}
 
-		.close {
-			
+		.container {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		.content {
+			flex: 1 1 auto;
+			margin: 0 1.5em 0 0;
+		}
+
+		.button {
+			flex: 1 0 auto;
+		}
+
+		@media all and (min-width: 48em) {
+
+			.container {
+				flex-wrap: nowrap;
+			}
+
 		}
 
 	</style>
 
-	<button class="close">
-		<span></span>
-		<span></span>
-	</button>
+	<div class="container">
+
+		<div class="content">
+			<slot name="content"></slot>
+		</div>
+
+		<div class="button">
+			<slot name="button"></slot>
+		</div>
+
+	</div>
 
 
 `);

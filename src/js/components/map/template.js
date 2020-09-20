@@ -30,6 +30,7 @@ export const template = new Template(() => /*template*/`
 			grid-template-rows: var(--gutter) 1fr var(--gutter) auto var(--gutter);
 			grid-template-columns: var(--gutter) 1fr var(--gutter);
 			height: 100%;
+			width: 100%;
 		}
 
 		.container::before {
@@ -55,6 +56,7 @@ export const template = new Template(() => /*template*/`
 
 		.map {
 			grid-area: 2 / 2 / 3 / 3;
+			position: relative;
 			opacity: 0;
 			visibility: hidden;
 			transition: var(--duration-average) ease-in;
@@ -73,7 +75,7 @@ export const template = new Template(() => /*template*/`
 		}
 
 		.controls-center {
-			flex: 5 1 auto;
+			flex: 3 1 32em;
 		}
 
 		.controls-zoom-in {
@@ -91,6 +93,14 @@ export const template = new Template(() => /*template*/`
 
 		.mapboxgl-control-container {
 			display: none;
+		}
+
+		.mapboxgl-canvas-container {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
 		}
 
 		::slotted(.button) {

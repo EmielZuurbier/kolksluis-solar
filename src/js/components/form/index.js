@@ -39,7 +39,7 @@ export default class AJAXFormElement extends BaseElement {
 		this.onresponse = () => {};
 
 		// Bind events to instance.
-		this.events.set(this, 'submit', onSubmit.bind(this));
+		// this.events.set(this, 'submit', onSubmit.bind(this));
 
 	}
 

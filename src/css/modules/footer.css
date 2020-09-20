@@ -1,4 +1,5 @@
 .footer {
+	--footer-bottom-padding: 1em 1.5em;
 	position: relative;
 }
 
@@ -16,6 +17,12 @@
 	padding: var(--content-padding);
 }
 
+.footer__bottom {
+	background-color: var(--color-light);
+	color: var(--color-dark-alt);
+	padding: var(--footer-bottom-padding);
+}
+
 .footer__logo {
 	grid-area: logo;
 	max-width: 20em;
@@ -27,6 +34,14 @@
 
 .footer__nav--secundary {
 	grid-area: nav-2;
+}
+
+@media all and (min-width: 32em) {
+
+	.footer {
+		--footer-bottom-padding: 1em 2.5em;
+	}
+
 }
 
 @media all and (min-width: 48em) {

@@ -5,7 +5,7 @@
 
 ?>
 
-<article class="news-item news-item--front-page">
+<article class="news-item news-item--front-page spot">
 	<div class="news-item__meta">
 		<div class="news-item__meta-wrapper">
 			<time class="date" datetime="<?php the_time( 'd-m-Y' ); ?>">

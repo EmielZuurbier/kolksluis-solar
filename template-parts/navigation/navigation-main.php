@@ -14,4 +14,4 @@ $nav_menu_args = array(
     'walker'                => new KSS_Walker_Nav_Menu()
 );
 
-wp_nav_menu( $nav_menu_args ); ?>
+// wp_nav_menu( $nav_menu_args ); ?>

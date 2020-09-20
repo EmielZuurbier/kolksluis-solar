@@ -20,15 +20,17 @@ get_header();
 				kss_get_hero( 'front-page' ); ?>
 
 				<div class="flow">
+					<kss-spotter selector=".spot">
 
-					<?php
-					// Backdrop
-					kss_get_backdrop(); ?>
+						<?php
+						// Backdrop
+						kss_get_backdrop(); ?>
 
-					<?php
-					// Layout
-					kss_get_layout( 'front-page' ); ?>
+						<?php
+						// Layout
+						kss_get_layout( 'front-page' ); ?>
 
+					</kss-spotter>
 				</div>
 
 			</div>

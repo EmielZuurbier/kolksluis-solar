@@ -1,0 +1,36 @@
+kss-message {
+	position: fixed;
+    bottom: 0;
+    left: 50%;
+    padding: 1.5em 1.5em 0.5em;
+    background: var(--color-light);
+    color: var(--color-dark);
+    box-shadow: var(--panel-shadow);
+	border-left: 0.75em solid;
+	will-change: transform;
+	transform: translate3d(-50%, 100%, 0);
+	transition: transform var(--duration-average) var(--easing);
+	width: 100%;
+	max-width: 90vw;
+	z-index: 99;
+}
+
+kss-message[active] {
+	transform: translate3d(-50%, -1.5em, 0);
+}
+
+kss-message[type="success"] {
+	border-color: var(--color-happy);
+}
+
+kss-message[type="failed"] {
+	border-color: var(--color-hot);
+}
+
+@media all and (min-width: 48em) {
+
+	kss-message {
+		max-width: 32em;
+	}
+
+}

@@ -39,5 +39,7 @@
 @import "./modules/quick-nav.css";		/* Quick Nav */
 @import "./modules/timeline.css";		/* Timeline */
 @import "./modules/cookies.css";		/* Cookie */
+@import "./modules/spotter.css";		/* Spotter */
+@import "./modules/message.css";		/* Message */
 
 @import "./plugins/gforms.css";			/* Gravity Forms */

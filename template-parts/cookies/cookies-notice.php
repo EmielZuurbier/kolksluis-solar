@@ -43,7 +43,7 @@ if ( $cookie_active ) { ?>
                             <?php } ?>
     
                             <?php if ( $cookie_body ) { ?>
-                                <p><?php echo $cookie_body; ?></p>
+                                <p class="small"><?php echo $cookie_body; ?></p>
                             <?php } ?>
 
                             <div class="cookie__buttons">
@@ -64,7 +64,7 @@ if ( $cookie_active ) { ?>
                                 <?php } ?>
     
                                 <?php if ( $cookie_read_more_active ) { ?>
-                                    <p class="link"><a href="<?php if ( $cookie_read_more_page ) { the_permalink( $cookie_read_more_page ); } else { echo '#'; } ?>" class="cookie__button--link" target="_self"><?php if ( $cookie_read_more_label ) { echo $cookie_read_more_label; } else { _e( 'Cookie policy', 'kolksluis_solar' ); } ?></a><p>
+                                    <p class="link small"><a href="<?php if ( $cookie_read_more_page ) { the_permalink( $cookie_read_more_page ); } else { echo '#'; } ?>" class="cookie__button--link" target="_self"><?php if ( $cookie_read_more_label ) { echo $cookie_read_more_label; } else { _e( 'Cookie policy', 'kolksluis_solar' ); } ?></a><p>
                                 <?php } ?>
                             </div>
                         </div>

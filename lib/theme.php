@@ -306,41 +306,35 @@ function kss_get_the_image( $image_id, $size = 'full' ) {
  * @param	number $id 
  * @param	string $size
  */
-function kss_the_image( $id, $lazy = false, $size = 'full' ) {
-	$image = kss_get_the_image( $id, $size );
-	if ( $image !== false ) {
-		$output = '<img ';
-		$output .= 'src="' . $image[ 'src' ] . '" ';
-		$output .= 'alt="' . $image[ 'alt' ] . '" ';
-		$output .= 'title="' . $image[ 'title' ] . '" ';
-		$output .= 'width="' . $image[ 'width' ] . '" ';
-		$output .= 'height="' . $image[ 'height' ] . '" ';
-		$output .= $lazy === true ? 'loading="lazy"' : '';
-		$output .= '/>';
-		echo $output;
-	}
+function kss_the_image( $thumbnail, $size = 'full', $lazy = false ) {
+	$output = '<img ';
+	$output .= 'src="' . $thumbnail[ 'url' ] . '" ';
+	$output .= 'alt="' . $thumbnail[ 'alt' ] . '" ';
+	$output .= 'title="' . $thumbnail[ 'title' ] . '" ';
+	$output .= 'width="' . $thumbnail[ 'width' ] . '" ';
+	$output .= 'height="' . $thumbnail[ 'height' ] . '" ';
+	$output .= $lazy === true ? 'loading="lazy"' : '';
+	$output .= '/>';
+	echo $output;
 }
 
 /**
  * Outputs the thumbnail of the post.
  */
-function kss_the_post_image( $size = 'full' ) {
+function kss_the_post_image( $size = 'full', $lazy = false ) {
 	global $post;
-	$image_id = get_post_thumbnail_id( $post );
-	if ( $image_id !== '' ) {
-		kss_the_image( $image_id, false, $size );
+	$hero = get_field( 'hero', $post );
+	$hero_thumbnail = $hero[ 'thumbnail' ];
+	if ( ! empty( $hero_thumbnail ) ) {
+		kss_the_image( $hero_thumbnail, $size, $lazy );
 	}
 }
 
 /**
- * Outputs the thumbnail of the post.
+ * Outputs the thumbnail of the post, but with the lazy attribute added.
  */
 function kss_the_lazy_post_image( $size = 'full' ) {
-	global $post;
-	$image_id = get_post_thumbnail_id( $post );
-	if ( $image_id !== '' ) {
-		kss_the_image( $image_id, true, $size );
-	}
+	kss_the_post_image( $size, true );
 }
 
 /**

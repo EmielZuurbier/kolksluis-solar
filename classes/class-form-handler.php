@@ -22,12 +22,17 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 	class Form_Handler {
 
 		/**
-		 * @private
+		 * Key for validating recaptcha.
+		 */
+		private $recaptcha_secret = '6Lf4ocgZAAAAACEe92x5dOpLlHvayhubUVvJdenk';
+
+		/**
+		 * Nonce for form handling.
 		 */
 		private $nonce = 'form_handler_nonce';
 
 		/**
-		 * @private
+		 * Store the action.
 		 */
 		private $action = '';
 
@@ -41,6 +46,7 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 		public function __construct( $action )
 		{
 			$this->action = $action;
+			add_filter( 'wp_mail_content_type', array( $this, 'set_mail_content_type' ) );
 		}
 
 		/**
@@ -51,8 +57,8 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 		 */
 		public function register_post_actions() 
 		{
-			add_action( "admin_post_nopriv_{$this->action}", array( $this, 'submit' ), 10, 0 );
-			add_action( "admin_post_{$this->action}", array( $this, 'submit' ), 10, 0 );
+			add_action( "admin_post_nopriv_{$this->action}", array( $this, 'submit' ), 10, 1 );
+			add_action( "admin_post_{$this->action}", array( $this, 'submit' ), 10, 1 );
 		}
 
 		/**
@@ -63,8 +69,41 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 		 */
 		public function register_ajax_actions() 
 		{
+			// add_action( 'rest_api_init', array( $this, 'register_submit_route', 10, 0 ) );
 			add_action( "wp_ajax_nopriv_{$this->action}", array( $this, 'submit' ), 10, 0 );
 			add_action( "wp_ajax_{$this->action}", array( $this, 'submit' ), 10, 0 );
+		}
+
+		/**
+		 * set_mail_content_type
+		 * 
+		 * Set content type for mail messages.
+		 */
+		public function set_mail_content_type()
+		{
+			return "text/html";
+		}
+
+		private function register_submit_route()
+		{
+			// Register new route to get data from.
+			register_rest_route( 'kss/v1', 
+				'/contact/', 
+				array(
+					'methods'		=> array( 'POST' ),
+					'callback'		=> 'validate_contact'
+				) 
+			);
+
+			function validate_contact( $args ) {
+
+			}
+
+		}
+
+		private function rest_submit()
+		{
+
 		}
 
 		/**
@@ -73,7 +112,7 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 		 * Submit entry point. From here we look at the submitted values and 
 		 * create logic based on the input.
 		 */
-		private function submit() 
+		public function submit() 
 		{
 
 			// Check security.
@@ -96,6 +135,66 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 				// Return response.
 				echo json_encode( $response );
 				die();
+
+			}
+
+			$recaptcha = $fields->get( 'recaptcha' );
+			if ( ! $recaptcha ) {
+
+				$this->return_response(
+					'failed',
+					__( 'Please make sure to check the recaptcha checkbox', THEME_TEXT_DOMAIN ),
+					$fields->get_entries(),
+					false
+				);
+
+				// Return response.
+				echo json_encode( $response );
+				die();
+
+			}
+
+			$recaptcha_verify_url = 'https://www.google.com/recaptcha/api/siteverify';
+			$recaptcha_verify_url .= '?secret=' . urlencode( $this->recaptcha_secret );
+			$recaptcha_verify_url .= '&response=' . urlencode( $recaptcha );
+
+			$recaptcha_response = wp_remote_get( $recaptcha_verify_url );
+			if ( is_wp_error( $recaptcha_response ) ) {
+
+				$this->return_response(
+					'failed',
+					__( 'An error occured during reCAPTCHA validation', THEME_TEXT_DOMAIN ),
+					$fields->get_entries(),
+					false,
+				);
+
+				// Return response.
+				echo json_encode( $response );
+				die();
+
+			}
+
+			$recaptcha_data = json_decode( $recaptcha_response[ 'body' ] );
+
+			if ( ! property_exists( $recaptcha_data, 'success' ) ) {
+
+				$this->return_response(
+					'failed',
+					__( 'Something went wrong with the reCAPTCHA validation', THEME_TEXT_DOMAIN ),
+					$fields->get_entries(),
+					false,
+				);
+
+			}
+
+			if ( $recaptcha_data->success === false ) {
+
+				$this->return_response(
+					'failed',
+					__( 'You are not identified as a human. Try again or stop trying.', THEME_TEXT_DOMAIN ),
+					$fields->get_entries(),
+					false
+				);
 
 			}
 
@@ -128,17 +227,35 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 				$mail_body
 			);
 
-			// Return a success response.
-			$response = array(
-				'status'    => 'success',
-				'message'   => __( 'All fields are filled in correctly and email has been sent. Thank you for your request', THEME_TEXT_DOMAIN ),
-				'entries'   => $fields->get_entries(),
-				'redirect'	=> $fields->get( 'redirect' ),
-			);
+			if ( ! $mail_sent ) {
+				
+				$this->return_response(
+					'failed',
+					__( 'Mail failed to send', THEME_TEXT_DOMAIN ),
+					$fields->get_entries(),
+					$fields->get( 'redirect' ),
+					$fields->get( 'referer' ),
+					array(
+						'mail_status'	=> $mail_sent
+					)
+				);
+				
+			}
 
-			// Return response.
-			echo json_encode( $response );
-			die();
+			// Return a success response.
+			$this->return_response(
+				'success',
+				__( 'All fields are filled in correctly and email has been sent. Thank you for your request', THEME_TEXT_DOMAIN ),
+				$fields->get_entries(),
+				$fields->get( 'redirect' ),
+				$fields->get( 'referer' ),
+				array(
+					'mail_to'		=> $mail_to,
+					'mail_from'		=> $mail_from,
+					'mail_subject'	=> $mail_subject,
+					'mail_body'		=> $mail_body
+				)
+			);
 
 		}
 
@@ -208,8 +325,8 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 					$sanitized_value = sanitize_text_field( $value );
 					$form_fields->set( 'message', $sanitized_value );
 				}
-				
-				else if ( $field === '_wp_http_referer' ) 
+
+				else if ( $field === '_wp_http_redirect' ) 
 				{
 					$home_url = wp_parse_url( get_site_url() );
 					$request_url = wp_parse_url( $value );
@@ -217,6 +334,21 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 					{
 						$form_fields->set( 'redirect', esc_url_raw( $value ) );
 					}
+				}
+				
+				else if ( $field === '_wp_http_referer' ) 
+				{
+					$home_url = wp_parse_url( get_site_url() );
+					$request_url = wp_parse_url( $value );
+					if ($home_url[ 'host' ] === $request_url[ 'host' ] ) 
+					{
+						$form_fields->set( 'referer', esc_url_raw( $value ) );
+					}
+				}
+
+				else if ( $field === 'g-recaptcha-response' )
+				{
+					$form_fields->set( 'recaptcha', $value );
 				}
 
 			}
@@ -274,7 +406,7 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 		{
 
 			// Set headers for mail to support HTML format.
-			$email_headers = array(
+			$headers = array(
 				"From: {$from}",
 				"Reply-To: {$from}",
 				'MIME-Version: 1.0',
@@ -282,8 +414,27 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 			);
 
 			// Send email
-			$email_sent = wp_mail( $to, $subject, $message, $email_headers );
+			$email_sent = wp_mail( $to, $subject, $message, $headers );
 			return $email_sent;
+
+		}
+
+		private function return_response( $status, $message, $entries, $redirect, $referer, $other = array() )
+		{
+
+			// Return a success response.
+			$response = array(
+				'status'    => $status,
+				'message'   => $message,
+				'entries'   => $entries,
+				'redirect'	=> $redirect,
+				'referer'	=> $referer,
+				'other'		=> $other
+			);
+
+			// Return response.
+			echo json_encode( $response );
+			die();
 
 		}
 

@@ -301,5 +301,12 @@ button[type="reset"]:active {
 
 .form__footer {
 	display: flex;
-	justify-content: flex-end;
+	align-items: flex-end;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 0.5em;
+}
+
+.form__security {
+	margin-bottom: -2px;
 }

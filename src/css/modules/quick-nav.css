@@ -1,11 +1,39 @@
 .quick-nav {
+	display: flex;
+	flex-wrap: wrap;
 	list-style: none;
 	padding: 0;
-	margin: 0;
-	grid-gap: 2px;
-	gap: 2px;
+	margin: -1px;
 }
 
 .quick-nav__item {
 	font-size: 1em;
+	flex: 1 1 18em;
+	margin: 1px;
+}
+
+@supports (display: grid) and (gap: 50%) {
+
+	.quick-nav {
+		grid-gap: 2px;
+		gap: 2px;
+		margin: 0;
+	}
+
+	.quick-nav__item {
+		margin: 0;
+	}
+
+}
+
+.quick-nav__item.spot .quick-nav__item-animation {
+	opacity: 0;
+	visibility: hidden;
+	transition: var(--duration-long) var(--easing);
+	transition-property: opacity, visibility;
+}
+
+.quick-nav__item.spot.animate .quick-nav__item-animation {
+	opacity: 1;
+	visibility: visible;
 }

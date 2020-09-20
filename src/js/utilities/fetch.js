@@ -100,7 +100,6 @@ export const postFormData = async (data, resource = wp.ajax) => {
 	// If response succeeds return the json.
 	if (isResponseOk(response)) {
 		const json = await response.json();
-		console.log(json);
 		return json;
 	}
 

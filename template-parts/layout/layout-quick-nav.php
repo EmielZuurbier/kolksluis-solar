@@ -10,20 +10,23 @@
 		<nav class="panel">
 
 			<?php if ( have_rows( 'quick-nav-repeater' ) ) { ?>
-				<ul class="layout__columns layout__columns--three quick-nav panel__content">
+				<ul class="quick-nav panel__content">
 
-					<?php 
+					<?php
+					$delay = 100;
+					$interval = 200;
 					while ( have_rows( 'quick-nav-repeater' ) ) { the_row(); ?>
 
 						<?php
 						$title = get_sub_field( 'title' );
 						$description = get_sub_field( 'description' );
-						$link = get_sub_field( 'link' ); 
+						$link = get_sub_field( 'link' );;
 						$link_title = $link[ 'title' ];
 						$link_url = $link[ 'url' ]; 
-						$link_target = $link['target'] ? $link['target'] : '_self';?>
+						$link_target = $link['target'] ? $link['target'] : '_self';
+						$delay += $interval; ?>
 
-						<li class="quick-nav__item">
+						<li class="quick-nav__item spot" style="transition-duration: <?php echo $delay; ?>">
 							<a class="block" href="<?php echo $link_url; ?>" target="<?php echo $link_target; ?>">
 								<div class="block__body">
 									<h3><?php echo $title; ?></h3>

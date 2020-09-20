@@ -3,6 +3,7 @@
  * contact-form.php 
  */
 
+global $wp;
 $redirect_url = kss_get_url_of_children_by_page_id( get_the_id() );
 ?>
 
@@ -26,6 +27,7 @@ $redirect_url = kss_get_url_of_children_by_page_id( get_the_id() );
 			<textarea slot="input" class="form__textarea" rows="15" name="message" id="contact-message"></textarea>
 		</div>
 		<div class="form__footer">
+			<div class="form__security" id="recaptcha"></div>
 			<button type="submit" class="button">
 				<span class="button__label">Verstuur</span>
 				<div class="button__icon">
@@ -35,7 +37,8 @@ $redirect_url = kss_get_url_of_children_by_page_id( get_the_id() );
 		</div>
 		<input type="hidden" name="_wp_nonce" value="<?php echo wp_create_nonce( 'form_handler_nonce' ); ?>"/>
 		<?php if ( ! empty( $redirect_url ) ) { ?>
-			<input type="hidden" name="_wp_http_referer" value="<?php echo $redirect_url[ 0 ]; ?>">
+			<input type="hidden" name="_wp_http_redirect" value="<?php echo $redirect_url[ 0 ]; ?>">
+			<input type="hidden" name="_wp_http_referer" value="<?php echo home_url( $wp->request ); ?>">
 		<?php } ?>
 	</form>
 </kss-form>

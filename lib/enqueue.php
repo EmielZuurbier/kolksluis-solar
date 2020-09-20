@@ -100,9 +100,24 @@ function enqueue_theme_scripts() {
 	/**
 	 * reCaptcha script.
 	 */
-	wp_register_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js?render=6Lcr86oZAAAAAOcnk6OExk1Mp8lT7RpB58891L-W', null, false, true );
+	// wp_register_script( 'recaptcha-v3', '//www.google.com/recaptcha/api.js?render=6Lcr86oZAAAAAOcnk6OExk1Mp8lT7RpB58891L-W', null, false, true );
+	// if ( is_page_template( 'templates/contact.php' ) ) {
+	// 	wp_enqueue_script( 'recaptcha-v3' );
+	// }
+
+	wp_register_script( 'recaptcha-v2', '//www.google.com/recaptcha/api.js?onload=__onRecaptchaLoad__&render=explicit', null, false, true );
+	wp_add_inline_script( 'recaptcha-v2', "
+		window.__onRecaptchaLoad__ = function() {
+			var element = document.getElementById('recaptcha');
+			grecaptcha.render(element, {
+				'sitekey': '6Lf4ocgZAAAAAP2JyF7uIHcYznQR6S0j-Ac9ucuO',
+				'theme': 'dark',
+				'size': 'normal',
+			});
+		};
+	" );
 	if ( is_page_template( 'templates/contact.php' ) ) {
-		wp_enqueue_script( 'recaptcha' );
+		wp_enqueue_script( 'recaptcha-v2' );
 	}
 
 	// Add local WP variables.
@@ -158,17 +173,17 @@ add_filter( 'script_loader_tag', 'custom_script_attributes', 10, 3 );
 function custom_script_attributes( $tag, $handle, $src ) {
 
 	// Add scripts to a handles array to provide them with an extra attribute.
-	$async_handles = array();
-	$defer_handles = array();
+	$async_handles = array( 'script' );
+	$defer_handles = array( 'recaptcha-v2' );
 
 	// Script that load async
 	if ( in_array( $handle, $async_handles ) ) {
-		$tag = '<script id="' . $handle . '-js" src="' . $src . '" type="text/javascript" async></script>';
+		$tag = str_replace(' src', ' async="async" src', $tag);
 	} 
 	
 	// Script that defer
 	else if ( in_array( $handle, $defer_handles ) ) {
-		$tag = '<script id="' . $handle . '-js" src="' . $src . '" type="text/javascript" defer></script>';
+		$tag = str_replace(' src', ' defer="defer" src', $tag);
 	} 
 	
 	// // Default scripts

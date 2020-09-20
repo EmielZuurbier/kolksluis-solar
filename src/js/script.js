@@ -14,6 +14,8 @@ import SliderElement from 'Components/slider/index.js';
 import SlideElement from 'Components/slide/index.js';
 import VideoElement from 'Components/video/index.js';
 import SetupElement from 'Components/setup/index.js';
+import SpotterElement from 'Components/spotter/index.js';
+import MessageElement from 'Components/message/index.js';
 
 const definer = new CustomElementsDefiner('kss')
 	.add('cookie', CookieElement)
@@ -29,15 +31,16 @@ const definer = new CustomElementsDefiner('kss')
 	.add('slide', SlideElement)
 	.add('video', VideoElement)
 	.add('setup', SetupElement)
+	.add('spotter', SpotterElement)
+	.add('message', MessageElement)
 	.defineAll();
 
 const menu = document.querySelector('.js-menu');
 const menuToggle = document.querySelector('.js-menu-toggle');
 
-menuToggle.addEventListener('click', function({ target }) {
-	const toggle = target.closest('.js-menu-toggle');
-	const id = toggle.getAttribute('aria-controls');
-	const menu = document.getElementById(id);
+menuToggle.addEventListener('click', function({ target, currentTarget }) {
+	const menuId = currentTarget.getAttribute('aria-controls');
+	const menu = document.getElementById(menuId);
 	const flyouts = document.querySelectorAll('.js-flyout');
 	for (const flyout of flyouts) {
 		flyout.open = false;
@@ -54,25 +57,6 @@ menu.addEventListener('close', function() {
 	menuToggle.setAttribute('aria-expanded', 'false');
 });
 
-const ignoreInputs = ['hidden', 'submit', 'button'];
-const contactForm = document.getElementById('contact-form');
-if (contactForm !== null) {
-	contactForm.addEventListener('response', event => {
-		const { detail: { response } } = event;
-		const { message, status, redirect } = response;
-		if (status === 'success') {
-			if (redirect !== false) {
-				location.replace(redirect);
-			}
-			// const forms = contactForm.querySelectorAll('kss-input');
-			// for (const form of forms) {
-			// 	for (const input of form.elements) {
-			// 		if (!ignoreInputs.includes(input.type))
-			// 		input.value = '';
-			// 	}
-			// }
-		} else {
-			console.log(event);
-		}
-	});
-}
+document.addEventListener('spotted', ({ target }) => {
+	target.classList.add('animate');
+});

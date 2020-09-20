@@ -46,6 +46,9 @@
 				</div>
 				
 			</div>
+			<div class="footer__bottom">
+				<p class="small">&copy; <?php echo date( 'Y' ); ?> Kolksluis solar - All Rights Reserverd.</p>
+			</div>
 		</div>
 	</div>
 </footer>

@@ -124,6 +124,6 @@ function head_pwa_meta() {
         <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
         <meta name="mobile-web-app-capable" content="yes"/>
         <meta name="theme-color" content="#ffffff"/>
-        <link rel="manifest" href="<?php echo get_template_directory_uri() . '/assets/manifest.json'; ?>">
+        <link rel="manifest" href="<?php echo get_template_directory_uri() . '/manifest.webmanifest'; ?>">
     <?php
 }

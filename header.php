@@ -1,12 +1,9 @@
 <?php
 /**
- * Theme:				Kolksluis Solar
- * Template:			header.php
- * Description:			
+ * header.php	
  */
 ?>
 <!DOCTYPE html>
-<!-- Made by Control || controldigital.nl -->
 <html lang="<?php bloginfo( 'language' ); ?>" class="no-js">
 	<head>
 

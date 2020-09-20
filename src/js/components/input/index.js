@@ -96,34 +96,4 @@ export default class InputElement extends BaseElement {
 
     }
 
-	/**
-	 * Fires when the element has been connected.
-	 * 
-	 * @method	connectedCallback
-	 * @returns	{void}
-	 */
-	connectedCallback() {
-
-	}
-
-	/**
-	 * Fires when the element has been disconnected.
-	 * 
-	 * @method	disconnectedCallback
-	 * @returns	{void}
-	 */
-	disconnectedCallback() {
-
-	}
-
-	/**
-	 * Fires when the element has been adopted in a new document.
-	 * 
-	 * @method	connectedCallback
-	 * @returns	{void}
-	 */
-	adoptedCallback() {
-
-	}
-
 }
