@@ -109,3 +109,60 @@ export const postFormData = async (data, resource = wp.ajax) => {
 	throw error;
 
 };
+
+/**
+ * Makes sure that when called multiple times in a short span of time
+ * that the previous request will be aborted and a new request will
+ * begin. This way there is always one request going out, but it does
+ * not guarantee that the server is already reached and is creating a
+ * response.
+ * 
+ * Call the function first and store the result. This is now your wrapper
+ * around a fetch request.
+ * 
+ * @function  	createThrottledFetch
+ * @returns		{Function}
+ * 
+ * @example
+ * const throttledFetch = createThrottledFetch();
+ * const response = await throttledFetch(url, {
+ *   method: 'POST',
+ *   body: body
+ * });
+ */
+export const createThrottledFetch = () => {
+	let controller = null;
+
+	return (url, options) => {
+		if (controller) {
+			controller.abort();
+		}
+
+		controller = new AbortController();
+		const { signal } = controller;
+
+		return fetch(url, {
+			...options,
+			signal,
+		})
+		.then((response) => {
+			controller = null;
+			return response;
+		})
+		.catch(({ name, message }) => {
+			if (name === 'AbortError') {
+				console.log(
+					`%c throttledFetch message:\n %cCurrent request has been aborted. Starting new request.`,
+					'font-weight: bold; border-left: 3px solid #8bc34a;', 
+					'color: #a0a0a0;'
+				);
+			} else {
+				console.log(
+					`%c throttledFetch message:\n %c${name}: ${message}.`,
+					'font-weight: bold; border-left: 3px solid #ff5722', 
+					'color: #a0a0a0;'
+				);
+			}
+		});
+	}
+}
