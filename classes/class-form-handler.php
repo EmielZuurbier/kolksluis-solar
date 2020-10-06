@@ -120,16 +120,12 @@ if ( ! class_exists( 'Form_Handler' ) ) {
 			$fields = $this->sanitize_fields( $_POST );
 			if ( $fields === false ) {
 
-				$response = array(
-					'status'	=> 'failed',
-					'message'	=> __( 'Some fields are filled incorrectly. Please try again', THEME_TEXT_DOMAIN ),
-					'entries'	=> $fields->get_entries(),
-					'redirect'	=> false
+				$this->return_response(
+					'failed',
+					__( 'Some fields are filled incorrectly. Please try again', THEME_TEXT_DOMAIN ),
+					array(),
+					false,
 				);
-
-				// Return response.
-				echo json_encode( $response );
-				die();
 
 			}
 
