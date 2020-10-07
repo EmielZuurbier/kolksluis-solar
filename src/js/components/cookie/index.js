@@ -132,9 +132,17 @@ export default class CookieElement extends BaseElement {
 
 	}
 
+	/**
+	 * Uses a fetch request to call the rest api for the cookie scripts
+	 * that the user added to the WP Customizer.
+	 * 
+	 * @async
+	 * @method	getCookieScripts
+	 * @returns	{Promise<string[]>}
+	 */
 	async getCookieScripts() {
 		try {
-			const response = await fetch(`${wp.rest}kss/v1/cookies`);
+			const response = await fetch(`${__wp__.rest}kss/v1/cookies`);
 			const scripts = await response.json();
 			return scripts;
 		} catch(error) {
