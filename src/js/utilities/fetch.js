@@ -73,10 +73,10 @@ export async function* fetchIterator(resources, init = {}) {
  * 
  * @function	postFormData
  * @param 		{FormData} data A FormData instance with data for the request.
- * @param 		{string} [resource=wp.ajax] The URL to fetch from.
+ * @param 		{string} [resource=__wp__.ajax] The URL to fetch from.
  * @returns		{Promise} Returns a promise with a string on resolve.
  */
-export const postFormData = async (data, resource = wp.ajax) => {
+export const postFormData = async (data, resource = __wp__.ajax) => {
 
 	// Stop the function if no FormData instance is given.
 	if (typeof data === 'undefined' || !(data instanceof FormData)) {

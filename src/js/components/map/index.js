@@ -97,7 +97,7 @@ export default class MapBoxElement extends BaseElement {
 			map.addSource('kolksluis-solar', {
 				"type": "geojson",
 				"lineMetrics": true,
-				"data": `${wp.rest}kss/v1/geojson`
+				"data": `${__wp__.rest}kss/v1/geojson`
 			});
 
 			// Add polygon layer.

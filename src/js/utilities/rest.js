@@ -16,10 +16,10 @@ import { createQueryableURIString } from './tools.js';
  * @function    getRestData
  * @param	    {string} [route='/wp/v2/posts'] The default route of getting results.
  * @param	    {Object} args Arguments to limit results to the specificity of the query.
- * @param	    {string} [rest=wp.rest] Url of REST API.
+ * @param	    {string} [rest=__wp__.rest] Url of REST API.
  * @returns	    {Promise}
  */
-export const getRestData = async (route = 'wp/v2/posts', args = {}, rest = wp.rest) => {
+export const getRestData = async (route = 'wp/v2/posts', args = {}, rest = __wp__.rest) => {
 
 	// Check if args parameter is set and if it is an object.
 	if ('object' !== typeof args) throw new Error('Args not set or not an object');
@@ -28,8 +28,10 @@ export const getRestData = async (route = 'wp/v2/posts', args = {}, rest = wp.re
 	const url = new URL(`${rest}${route}`);
 	url.search = createQueryableURIString(args);
 
+	// Get the global nonce and add it to the header.
+	const { nonce } = __wp__;
 	const headers = new Headers({
-		'X-WP-Nonce': wp.nonce
+		'X-WP-Nonce': nonce,
 	});
 
 	// Fetch the request.
