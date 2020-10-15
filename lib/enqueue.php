@@ -135,7 +135,7 @@ function enqueue_theme_scripts() {
 	 * interactions and DOM modifications.
 	 */
 	wp_register_script( 'script', $template_dir . '/dist/js/script.js', null, false, true );
-	wp_add_inline_script( 'script', "window.__wp__ = {$wp_data}" );
+	wp_add_inline_script( 'script', "window.__wp__ = {$wp_data}", "before" );
 	wp_enqueue_script( 'script' );
 
 }
