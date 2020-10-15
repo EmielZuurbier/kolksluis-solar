@@ -103,6 +103,15 @@ export const convertKeysOfObject = (object, converterCallback) => {
 export const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 /**
+ * Returns an array of numbers that are in a string.
+ * 
+ * @function	getNumbersFromString
+ * @param 		{string} string String to search in.
+ * @returns		{number[]} Array for numbers. 
+ */
+export const getNumbersFromString = string => string.match(/\d+/g).map(match => Number(match))
+
+/**
  * Returns a given number squared.
  * 
  * @function	numberSquared
