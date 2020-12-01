@@ -53,6 +53,7 @@ main {
 	grid-template: 
 		"main" 1fr / 1fr;
 	height: auto;
+	min-height: 100vh;
 }
 
 .panels {
@@ -67,4 +68,9 @@ main {
 
 .no-margin {
 	margin: 0 !important;
+}
+
+.js-ajax-container,
+.js-ajax-content {
+	display: contents;
 }
