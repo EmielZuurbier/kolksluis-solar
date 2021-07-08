@@ -18,7 +18,7 @@ export default class Cookies {
 		const nameExpression = `${name}=`;
 		const cookies = document.cookie.split(';');
 		const cookie = cookies.find(currentCookie => currentCookie.includes(nameExpression));
-		if (cookie) return cookie.substring(nameExpression.length, cookie.length);
+		if (cookie) return cookie.trim().substring(nameExpression.length, cookie.length);
 		return null;
 	}
 
