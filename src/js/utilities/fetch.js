@@ -151,13 +151,13 @@ export const createThrottledFetch = () => {
 		})
 		.catch(({ name, message }) => {
 			if (name === 'AbortError') {
-				console.log(
+				console.debug(
 					`%c throttledFetch message:\n %cCurrent request has been aborted. Starting new request.`,
 					'font-weight: bold; border-left: 3px solid #8bc34a;', 
 					'color: #a0a0a0;'
 				);
 			} else {
-				console.log(
+				console.debug(
 					`%c throttledFetch message:\n %c${name}: ${message}.`,
 					'font-weight: bold; border-left: 3px solid #ff5722', 
 					'color: #a0a0a0;'
