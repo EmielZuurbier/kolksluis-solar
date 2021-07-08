@@ -260,7 +260,6 @@ export const generateAlphaNumericString = (length = 10) => {
 	return value;
 };
 
-
 /**
  * Generates a unique UUID that --almost-- guarantees that the value is unique.
  * 
